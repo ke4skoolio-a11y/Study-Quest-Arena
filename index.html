@@ -1,64 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Math 115 Tracker</title>
+    <meta charset="UTF-8">
+    <title>Math 115 RPG Tracker</title>
     <style>
-        /* This is the CSS! It styles the HTML below */
+        /* Dark Theme Background */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color: #0b0f19; /* Deep dark blue/black */
+            color: #e0e0e0;
         }
 
-        /* The Top Navigation Bar */
+        /* Header and Navigation */
         header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 15px 20px;
+            background-color: #121826;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 2px solid #1f2937;
         }
 
-        /* The Menu Links */
+        header h2 {
+            margin: 0;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4); /* Slight white glow on the logo */
+        }
+
+        nav {
+            display: flex;
+            gap: 5px;
+        }
+
+        /* The Base Menu Links */
         nav a {
-            color: white;
+            color: #a0aec0; /* Faded grey text */
             text-decoration: none;
-            margin-left: 20px;
             font-weight: bold;
+            padding: 10px 15px;
+            border: 1px solid transparent; /* Invisible border to prevent text from shifting on hover */
+            transition: all 0.3s ease; /* Makes the glow fade in smoothly */
         }
 
+        /* THE GLOW HOVER EFFECT */
         nav a:hover {
-            color: #3498db;
+            color: #ffffff;
+            border: 1px solid #7c3aed; /* Neon purple border */
+            border-radius: 4px;
+            /* Creates an outer purple glow AND an inner purple glow */
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.6), inset 0 0 10px rgba(124, 58, 237, 0.3);
+            text-shadow: 0 0 8px #7c3aed; /* Makes the text itself glow */
         }
 
-        /* The Main Content Area */
+        /* Main Content Container */
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto;
-            background: white;
+            background-color: #121826;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid #1f2937;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .container h1 {
+            color: #7c3aed; /* Purple header */
+        }
+        
+        /* Image styling */
+        .character-img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 2px solid #1f2937;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h2>MATH 115: College Algebra</h2>
+        <h2>MATH 115: Arise</h2>
         <nav>
-            <a href="#">Dashboard</a>
-            <a href="#">Practice Questions</a>
+            <a href="#">Main</a>
+            <a href="#">Game Intro</a>
+            <a href="#">Practice</a>
             <a href="#">Character Stats</a>
         </nav>
     </header>
 
     <div class="container">
-        <h1>Welcome to Your Study Game!</h1>
-        <p>This is where we will start building out your RPG point system and algebra questions.</p>
-    </div>
+        <h1>Welcome, Player.</h1>
+        <p>Your journey to master College Algebra begins here. Answer questions to level up your Intelligence, Strength, and Charisma.</p>
+        
+        </div>
 
 </body>
 </html>
