@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Math 115 RPG Tracker</title>
+    <title>Study Quest Arena</title>
     <style>
         /* Dark Theme Background */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0b0f19; /* Deep dark blue/black */
+            background-color: #0b0f19;
             color: #e0e0e0;
         }
 
@@ -26,7 +26,9 @@
         header h2 {
             margin: 0;
             color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4); /* Slight white glow on the logo */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+            font-size: 1.5rem;
+            letter-spacing: 1px;
         }
 
         nav {
@@ -36,52 +38,99 @@
 
         /* The Base Menu Links */
         nav a {
-            color: #a0aec0; /* Faded grey text */
+            color: #a0aec0;
             text-decoration: none;
             font-weight: bold;
             padding: 10px 15px;
-            border: 1px solid transparent; /* Invisible border to prevent text from shifting on hover */
-            transition: all 0.3s ease; /* Makes the glow fade in smoothly */
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
         }
 
-        /* THE GLOW HOVER EFFECT */
+        /* The Glow Hover Effect for Menu */
         nav a:hover {
             color: #ffffff;
-            border: 1px solid #7c3aed; /* Neon purple border */
+            border: 1px solid #7c3aed;
             border-radius: 4px;
-            /* Creates an outer purple glow AND an inner purple glow */
             box-shadow: 0 0 15px rgba(124, 58, 237, 0.6), inset 0 0 10px rgba(124, 58, 237, 0.3);
-            text-shadow: 0 0 8px #7c3aed; /* Makes the text itself glow */
+            text-shadow: 0 0 8px #7c3aed;
         }
 
-        /* Main Content Container */
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background-color: #121826;
-            padding: 30px;
-            border-radius: 8px;
-            border: 1px solid #1f2937;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        /* --- NEW HERO SECTION --- */
+        .hero {
+            /* Sets the image as the background covering the whole screen height */
+            height: calc(100vh - 70px); 
+            background-image: url("Hero's section.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            /* Flexbox to align items to the left */
+            display: flex;
+            align-items: center;
+            padding-left: 8%; /* Pushes text into the dark left side */
         }
 
-        .container h1 {
-            color: #7c3aed; /* Purple header */
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Aligns text and button to the left */
         }
-        
-        /* Image styling */
-        .character-img {
-            max-width: 100%;
+
+        /* Bouncing Neon Text */
+        .neon-bounce-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin: 0 0 20px 0;
+            color: #ffffff;
+            
+            /* Pure white neon glow */
+            text-shadow: 
+                0 0 5px #fff, 
+                0 0 15px #fff, 
+                0 0 25px #fff, 
+                0 0 40px rgba(255, 255, 255, 0.5);
+            
+            /* Links to the animation below */
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        /* The Animation Logic */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px); /* Bounces up 20 pixels */
+            }
+        }
+
+        /* Gamer Action Button */
+        .get-started-btn {
+            background-color: transparent;
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 15px 35px;
+            border: 2px solid #7c3aed; /* Neon purple border */
             border-radius: 8px;
-            margin-top: 20px;
-            border: 2px solid #1f2937;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
+        }
+
+        .get-started-btn:hover {
+            background-color: #7c3aed; /* Fills button on hover */
+            box-shadow: 0 0 25px rgba(124, 58, 237, 0.8);
+            transform: scale(1.05); /* Slightly enlarges the button */
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h2>MATH 115: Arise</h2>
+        <h2>Study Quest Arena</h2>
         <nav>
             <a href="#">Main</a>
             <a href="#">Game Intro</a>
@@ -90,11 +139,12 @@
         </nav>
     </header>
 
-    <div class="container">
-        <h1>Welcome, Player.</h1>
-        <p>Your journey to master College Algebra begins here. Answer questions to level up your Intelligence, Strength, and Charisma.</p>
-        
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="neon-bounce-title">Welcome, player</h1>
+            <button class="get-started-btn">Get Started</button>
         </div>
+    </section>
 
 </body>
 </html>
