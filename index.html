@@ -1,3 +1,13 @@
+Adding a soft stroke is a fantastic design choice! When you have white text on a glowing background, a gentle dark stroke acts as an anchor, making the text incredibly crisp and readable without ruining that cozy vibe.
+
+Bringing back the bounce animation is also a great way to keep that subtle "video game" energy alive. We will just make sure the bounce is slow and smooth so it fits the relaxing aesthetic.
+
+Here is the updated code. To pull off the stroke, we are using a CSS property called -webkit-text-stroke, and we brought back the @keyframes logic for the bounce.
+
+The Upgraded HTML & CSS
+Copy and paste this, completely replacing your current index.html code:
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +19,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* Base Reset & New Custom Font */
+        /* Base Reset & Custom Font */
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif; /* Applied the new pleasing font here! */
+            font-family: 'Poppins', sans-serif;
             height: 100%;
             color: #4a4a4a;
         }
@@ -36,12 +46,10 @@
             max-width: 1200px;
             margin: 0 auto;
             
-            /* The Frosted Glass Effect */
             background: rgba(255, 255, 255, 0.45); 
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             
-            /* The Pill Shape */
             border-radius: 60px;
             border: 1px solid rgba(255, 255, 255, 0.6);
             padding: 12px 40px;
@@ -101,19 +109,35 @@
             max-width: 500px;
         }
 
-        /* The Updated Glowing Title */
+        /* --- THE UPDATED GLOWING, BOUNCING, STROKED TITLE --- */
         .soft-title {
             font-size: 4.5rem;
             font-weight: 800;
-            color: #ffffff; /* Pure white text */
+            color: #ffffff;
             margin: 0 0 15px 0;
             line-height: 1.1;
             
-            /* The soft white outer glow effect */
+            /* The Soft Black Stroke */
+            -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.4);
+            
+            /* The White Outer Glow */
             text-shadow: 
                 0 0 10px rgba(255, 255, 255, 0.8), 
                 0 0 20px rgba(255, 255, 255, 0.5), 
                 0 0 40px rgba(255, 255, 255, 0.3);
+
+            /* The Bounce Animation */
+            animation: soft-bounce 3.5s infinite ease-in-out;
+        }
+
+        /* The Smooth Bounce Logic */
+        @keyframes soft-bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px); /* Gentle float upward */
+            }
         }
 
         /* Call to Action Button */
