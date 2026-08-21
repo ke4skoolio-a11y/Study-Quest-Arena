@@ -1,3 +1,8 @@
+Got it! I have updated your homepage code so that the "Get Started" button now properly links to your new login.html file.
+
+Copy and paste this completely over your current index.html file:
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,9 +75,8 @@
             text-decoration: none;
             color: #4a4a4a;
             font-weight: 600;
-            /* INCREASED PADDING: Gives the sliding glass more height and width */
             padding: 12px 22px; 
-            border-radius: 30px; /* Changed to 30px for a perfect pill shape */
+            border-radius: 30px; 
             transition: color 0.3s ease, transform 0.3s ease;
             position: relative;
             z-index: 2; 
@@ -86,9 +90,9 @@
         /* --- THE NEW SLIDING MAGNIFYING GLASS --- */
         .sliding-glass {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.5); /* Slightly more visible frost */
+            background-color: rgba(255, 255, 255, 0.5); 
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            border-radius: 30px; /* Matched the pill shape */
+            border-radius: 30px; 
             z-index: 1; 
             opacity: 0; 
             pointer-events: none; 
@@ -193,9 +197,9 @@
         </header>
 
         <div class="hero-content">
-            <!-- Updated 'P' to be capitalized! -->
             <h1 class="soft-title">Welcome<br>Player</h1>
-            <button class="action-btn">Get Started</button>
+            <!-- UPDATED BUTTON LINK HERE -->
+            <button class="action-btn" onclick="window.location.href='login.html'">Get Started</button>
         </div>
 
     </section>
