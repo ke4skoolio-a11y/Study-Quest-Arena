@@ -60,21 +60,30 @@
 
         nav {
             display: flex;
-            gap: 25px;
+            gap: 15px; /* Slightly reduced gap since the padding adds space */
             align-items: center;
         }
 
+        /* The Base Menu Links */
         nav a {
             text-decoration: none;
             color: #4a4a4a;
             font-weight: 500;
-            transition: color 0.3s ease;
+            padding: 8px 18px; /* Adds invisible space around the text for the box */
+            border-radius: 12px; /* The soft rounded corners */
+            transition: all 0.3s ease;
         }
 
-        nav a:hover {
-            color: #8c7ae6;
+        /* --- THE MAGNIFYING GLASS HOVER EFFECT --- */
+        /* Using :not(.nav-btn) ensures the Log In button keeps its own specific style */
+        nav a:not(.nav-btn):hover {
+            color: #2c3e50; /* Darkens the text for contrast */
+            background-color: rgba(255, 255, 255, 0.55); /* The frosted glass box */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
+            transform: scale(1.05); /* The slight magnifying pop */
         }
 
+        /* The Log In Button */
         .nav-btn {
             background-color: #2c3e50;
             color: #ffffff !important;
@@ -99,7 +108,7 @@
             max-width: 500px;
         }
 
-        /* --- THE UPDATED GLOWING, BOUNCING, STROKED TITLE --- */
+        /* Glowing, Bouncing, Stroked Title */
         .soft-title {
             font-size: 4.5rem;
             font-weight: 800;
@@ -107,26 +116,22 @@
             margin: 0 0 15px 0;
             line-height: 1.1;
             
-            /* The Soft Black Stroke */
             -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.4);
             
-            /* The White Outer Glow */
             text-shadow: 
                 0 0 10px rgba(255, 255, 255, 0.8), 
                 0 0 20px rgba(255, 255, 255, 0.5), 
                 0 0 40px rgba(255, 255, 255, 0.3);
 
-            /* The Bounce Animation */
             animation: soft-bounce 3.5s infinite ease-in-out;
         }
 
-        /* The Smooth Bounce Logic */
         @keyframes soft-bounce {
             0%, 100% {
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-12px); /* Gentle float upward */
+                transform: translateY(-12px); 
             }
         }
 
