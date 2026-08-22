@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player Dashboard | Study Quest Arena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Importing Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            background-color: #0b0c10; 
+            color: #c5c6c7;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* LEFT SIDE: Stats Panel */
+        .stats-panel {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .welcome-user {
+            color: #8c7ae6;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .level-header {
+            color: #ffffff;
+            font-size: 3rem;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(140, 122, 230, 0.5);
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(140, 122, 230, 0.3);
+            border-radius: 12px;
+            padding: 18px 25px;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            display: flex;
+            justify-content: space-between;
+            max-width: 450px;
+        }
+
+        .stat-value {
+            color: #8c7ae6;
+            font-weight: 800;
+        }
+
+        /* RIGHT SIDE: Character Image */
+        .character-panel {
+            flex: 1;
+            /* Make sure this image is uploaded to your GitHub! */
+            background-image: url('noob.png');
+            background-size: contain;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            box-shadow: inset 150px 0 150px -50px #0b0c10; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stats-panel">
+        <div class="welcome-user" id="display-user">Loading Hunter...</div>
+        <h1 class="level-header" id="display-level">Level 1</h1>
+        
+        <div class="stat-box">
+            <span>INT (Intelligence)</span>
+            <span class="stat-value" id="stat-int">0</span>
+        </div>
+        <div class="stat-box">
+            <span>STR (Strength)</span>
+            <span class="stat-value" id="stat-str">0</span>
+        </div>
+        <div class="stat-box">
+            <span>AGI (Agility)</span>
+            <span class="stat-value" id="stat-agi">0</span>
+        </div>
+        <div class="stat-box">
+            <span>VIT (Vitality)</span>
+            <span class="stat-value" id="stat-vit">0</span>
+        </div>
+    </div>
+
+    <div class="character-panel"></div>
+
+    <script>
+        // Your exact Supabase keys
+        const supabaseUrl = 'https://ftemtmzciwqwytfmkvlb.supabase.co';
+        const supabaseKey = 'sb_publishable_8Rh5Vw8e4odbFCPI-lXDhQ_4k9dOhjS';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Grab the username from the URL link
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('user');
+
+        async function loadPlayerData() {
+            if (!username) {
+                alert("No hunter detected! Please log in.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            document.getElementById('display-user').innerText = `HUNTER: ${username}`;
+
+            // Fetch this specific user's stats from Supabase
+            const { data, error } = await supabase
+                .from('player_stats')
+                .select('*')
+                .eq('username', username)
+                .single();
+
+            if (error) {
+                console.error("Error fetching stats:", error);
+            } else if (data) {
+                // Update the screen with real data from your database!
+                document.getElementById('display-level').innerText = `Level ${data.level}`;
+                document.getElementById('stat-int').innerText = data.intelligence;
+                document.getElementById('stat-str').innerText = data.strength;
+                document.getElementById('stat-agi').innerText = data.agility;
+                document.getElementById('stat-vit').innerText = data.vitality;
+            }
+        }
+
+        loadPlayerData();
+    </script>
+</body>
+</html>
