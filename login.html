@@ -1,3 +1,4 @@
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,7 +159,7 @@
         </div>
     </section>
 
-    <!-- THE SECURE JAVASCRIPT LOGIC -->
+    <!-- THE BULLETPROOF SECURE JAVASCRIPT LOGIC -->
     <script>
         const supabaseUrl = 'https://ftemtmzciwqwytfmkvlb.supabase.co';
         const supabaseKey = 'sb_publishable_8Rh5Vw8e4odbFCPI-lXDhQ_4k9dOhjS';
@@ -169,44 +170,51 @@
 
         form.addEventListener('submit', async function(event) {
             event.preventDefault(); 
-
-            const usernameInput = document.getElementById('username').value;
-            const passwordInput = document.getElementById('password').value;
             
-            // The clever trick: creating a dummy email for the secure vault
-            const dummyEmail = usernameInput + '@studyquest.com';
+            // We are wrapping everything in a "try" block. 
+            // If the code crashes at any point, it instantly jumps to the "catch" block at the bottom to tell us why.
+            try {
+                const usernameInput = document.getElementById('username').value;
+                const passwordInput = document.getElementById('password').value;
+                
+                const dummyEmail = usernameInput + '@studyquest.com';
 
-            // 1. Create the secure login in the Supabase Auth Vault
-            const { data: authData, error: authError } = await supabase.auth.signUp({
-                email: dummyEmail,
-                password: passwordInput,
-            });
+                // 1. Create the secure login in the Supabase Auth Vault
+                const { data: authData, error: authError } = await supabase.auth.signUp({
+                    email: dummyEmail,
+                    password: passwordInput,
+                });
 
-            if (authError) {
-                alert("Auth Error: " + authError.message);
-                return;
-            }
+                if (authError) {
+                    alert("Auth Error: " + authError.message);
+                    return;
+                }
 
-            // 2. Now that we have a VIP pass (logged in), insert Level 1 stats!
-            const { error: dbError } = await supabase
-                .from('player_stats')
-                .insert([
-                    { 
-                        username: usernameInput, 
-                        level: 1, 
-                        intelligence: 0, 
-                        strength: 0, 
-                        agility: 0, 
-                        vitality: 0 
-                    }
-                ]);
+                // 2. Insert Level 1 stats!
+                const { error: dbError } = await supabase
+                    .from('player_stats')
+                    .insert([
+                        { 
+                            username: usernameInput, 
+                            level: 1, 
+                            intelligence: 0, 
+                            strength: 0, 
+                            agility: 0, 
+                            vitality: 0 
+                        }
+                    ]);
 
-            if (dbError) {
-                alert("Database Error: " + dbError.message);
-            } else {
-                alert("Hunter profile securely initialized! Welcome to the System.");
-                // Sends you to the dashboard
-                window.location.href = `dashboard.html?user=${encodeURIComponent(usernameInput)}`;
+                if (dbError) {
+                    alert("Database Error: " + dbError.message);
+                } else {
+                    alert("Hunter profile securely initialized! Welcome to the System.");
+                    // Sends you to the dashboard
+                    window.location.href = `dashboard.html?user=${encodeURIComponent(usernameInput)}`;
+                }
+                
+            } catch (fatalError) {
+                // If a silent crash happens, this will force an alert box to show the exact error!
+                alert("CRITICAL JAVASCRIPT ERROR: " + fatalError.message);
             }
         });
     </script>
