@@ -1,3 +1,10 @@
+This is where your dashboard truly becomes yours! Swapping out those generic placeholders for your custom anime backgrounds is going to make it feel so much more personalized and rewarding to study.
+
+Because we already set up the .folder-paper class to automatically resize and fit images perfectly, we just need to delete those massive blocks of <svg> code and replace them with a single line of standard <img src="..."> code for each folder.
+
+Here is your final, personalized dashboard.html code. Completely overwrite your file with this:
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +64,6 @@
             gap: 120px 30px; 
             max-width: 1200px;
             margin: 0 auto;
-            /* CHANGED: Increased top padding to 90px so the pop-up image has room to breathe */
             padding: 90px 40px 100px 40px;
         }
 
@@ -101,7 +107,8 @@
             transform: translateY(-80px); 
         }
 
-        .folder-paper svg {
+        /* Makes sure your custom images fit perfectly inside the paper */
+        .folder-paper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -237,16 +244,9 @@
         <!-- FOLDER 1: PHYSICS -->
         <div class="folder-card">
             <div class="folder-back"></div>
+            <!-- YOUR NEW IMAGE HERE -->
             <div class="folder-paper">
-                <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="170" fill="#2e8fe0"/>
-                    <rect width="300" height="170" fill="url(#sky1)"/>
-                    <defs><linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f9bef"/><stop offset="1" stop-color="#1f7fdc"/></linearGradient></defs>
-                    <g fill="#ffffff" opacity="0.95"><rect x="20" y="30" width="40" height="10"/><rect x="30" y="20" width="30" height="10"/><rect x="10" y="40" width="70" height="8"/><rect x="170" y="18" width="50" height="9"/><rect x="180" y="9" width="30" height="9"/><rect x="230" y="45" width="36" height="8"/></g>
-                    <g fill="#1f6b1f"><rect x="0" y="95" width="18" height="18"/><rect x="12" y="80" width="30" height="20"/><rect x="0" y="70" width="22" height="20"/><rect x="20" y="60" width="20" height="20"/></g>
-                    <g fill="#2d8a2d"><rect x="4" y="88" width="10" height="10"/><rect x="18" y="70" width="12" height="10"/></g>
-                    <rect x="14" y="110" width="8" height="20" fill="#5c3a21"/>
-                </svg>
+                <img src="Kame_House.jpeg" alt="Physics Art">
             </div>
             <div class="folder-front">
                 <div class="folder-tab"></div>
@@ -264,16 +264,9 @@
         <!-- FOLDER 2: PRE-CALC -->
         <div class="folder-card">
             <div class="folder-back"></div>
+            <!-- YOUR NEW IMAGE HERE -->
             <div class="folder-paper">
-                <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="170" fill="#2e8fe0"/>
-                    <rect width="300" height="170" fill="url(#sky2)"/>
-                    <defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f9bef"/><stop offset="1" stop-color="#1f7fdc"/></linearGradient></defs>
-                    <g fill="#ffffff" opacity="0.95"><rect x="20" y="30" width="40" height="10"/><rect x="30" y="20" width="30" height="10"/><rect x="10" y="40" width="70" height="8"/><rect x="170" y="18" width="50" height="9"/><rect x="180" y="9" width="30" height="9"/><rect x="230" y="45" width="36" height="8"/></g>
-                    <g fill="#1f6b1f"><rect x="0" y="95" width="18" height="18"/><rect x="12" y="80" width="30" height="20"/><rect x="0" y="70" width="22" height="20"/><rect x="20" y="60" width="20" height="20"/></g>
-                    <g fill="#2d8a2d"><rect x="4" y="88" width="10" height="10"/><rect x="18" y="70" width="12" height="10"/></g>
-                    <rect x="14" y="110" width="8" height="20" fill="#5c3a21"/>
-                </svg>
+                <img src="Naruto Ichiraku.jpg" alt="Pre-Calc Art">
             </div>
             <div class="folder-front">
                 <div class="folder-tab"></div>
@@ -291,16 +284,9 @@
         <!-- FOLDER 3: HYDROLOGY -->
         <div class="folder-card">
             <div class="folder-back"></div>
+            <!-- YOUR NEW IMAGE HERE -->
             <div class="folder-paper">
-                <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="170" fill="#2e8fe0"/>
-                    <rect width="300" height="170" fill="url(#sky3)"/>
-                    <defs><linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f9bef"/><stop offset="1" stop-color="#1f7fdc"/></linearGradient></defs>
-                    <g fill="#ffffff" opacity="0.95"><rect x="20" y="30" width="40" height="10"/><rect x="30" y="20" width="30" height="10"/><rect x="10" y="40" width="70" height="8"/><rect x="170" y="18" width="50" height="9"/><rect x="180" y="9" width="30" height="9"/><rect x="230" y="45" width="36" height="8"/></g>
-                    <g fill="#1f6b1f"><rect x="0" y="95" width="18" height="18"/><rect x="12" y="80" width="30" height="20"/><rect x="0" y="70" width="22" height="20"/><rect x="20" y="60" width="20" height="20"/></g>
-                    <g fill="#2d8a2d"><rect x="4" y="88" width="10" height="10"/><rect x="18" y="70" width="12" height="10"/></g>
-                    <rect x="14" y="110" width="8" height="20" fill="#5c3a21"/>
-                </svg>
+                <img src="Food wars.jpg" alt="Hydrology Art">
             </div>
             <div class="folder-front">
                 <div class="folder-tab"></div>
@@ -318,16 +304,9 @@
         <!-- FOLDER 4: GEOLOGY -->
         <div class="folder-card">
             <div class="folder-back"></div>
+            <!-- YOUR NEW IMAGE HERE -->
             <div class="folder-paper">
-                <svg viewBox="0 0 300 170" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="300" height="170" fill="#2e8fe0"/>
-                    <rect width="300" height="170" fill="url(#sky4)"/>
-                    <defs><linearGradient id="sky4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f9bef"/><stop offset="1" stop-color="#1f7fdc"/></linearGradient></defs>
-                    <g fill="#ffffff" opacity="0.95"><rect x="20" y="30" width="40" height="10"/><rect x="30" y="20" width="30" height="10"/><rect x="10" y="40" width="70" height="8"/><rect x="170" y="18" width="50" height="9"/><rect x="180" y="9" width="30" height="9"/><rect x="230" y="45" width="36" height="8"/></g>
-                    <g fill="#1f6b1f"><rect x="0" y="95" width="18" height="18"/><rect x="12" y="80" width="30" height="20"/><rect x="0" y="70" width="22" height="20"/><rect x="20" y="60" width="20" height="20"/></g>
-                    <g fill="#2d8a2d"><rect x="4" y="88" width="10" height="10"/><rect x="18" y="70" width="12" height="10"/></g>
-                    <rect x="14" y="110" width="8" height="20" fill="#5c3a21"/>
-                </svg>
+                <img src="Hyouka.jpg" alt="Geology Art">
             </div>
             <div class="folder-front">
                 <div class="folder-tab"></div>
