@@ -8,7 +8,7 @@
         :root {
             /* XP Tracker Variables */
             --ink: #ffffff;
-            --ink-dim: rgba(255,255,255,.62);
+            --ink-dim: rgba(255,255,255,.8);
             --water-1: #7ee8ff;
             --water-2: #5b8bff;
             --water-deep: #3f5fe0;
@@ -48,7 +48,7 @@
             border-radius: 20px;
             color: #ffffff;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.2s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -58,26 +58,6 @@
         .back-link:hover {
             background: rgba(255, 255, 255, 0.4);
             transform: translateY(-2px);
-        }
-
-        /* ---- Liquid-glass backdrop: soft moving color blobs ---- */
-        .bg-blobs {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            /* Removed the solid dark background so the Ocean shows through */
-            background:
-                radial-gradient(circle at 18% 22%, rgba(255, 122, 217, 0.4) 0%, transparent 45%),
-                radial-gradient(circle at 82% 15%, rgba(111, 141, 255, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 75% 80%, rgba(91, 233, 255, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 20% 85%, rgba(255, 207, 110, 0.4) 0%, transparent 45%);
-            filter: blur(10px) saturate(140%);
-            animation: blobDrift 16s ease-in-out infinite alternate;
-        }
-        @keyframes blobDrift {
-            0% { transform:scale(1) translate(0,0); }
-            50% { transform:scale(1.08) translate(-2%, 2%); }
-            100% { transform:scale(1) translate(2%, -2%); }
         }
 
         /* Centered Layout for Both Widgets */
@@ -94,23 +74,23 @@
         .widget-layout {
             display: flex;
             gap: 40px;
-            align-items: center;
+            align-items: center; /* This keeps the compact timer vertically centered with the tall phone */
             justify-content: center;
             flex-wrap: wrap;
         }
 
         /* =========================================
-           WIDGET 1: FOCUS TIMER (Liquid Glass)
+           WIDGET 1: FOCUS TIMER (Compact Liquid Glass)
            ========================================= */
         .liquid-card {
             background: rgba(255, 255, 255, 0.15); 
             backdrop-filter: blur(28px) saturate(180%);
             -webkit-backdrop-filter: blur(28px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.35);
-            border-radius: 44px; /* Matched to phone border-radius */
+            border-radius: 44px; 
             padding: 40px 30px;
             width: 340px;
-            height: 660px; /* Matched to phone height */
+            /* Height removed to let it size naturally */
             box-shadow: 0 30px 70px rgba(0,0,0,.3), inset 0 1px 1px rgba(255,255,255,.5);
             text-align: center;
             display: flex;
@@ -384,9 +364,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Light Blobs floating over the Ocean -->
-    <div class="bg-blobs"></div>
 
     <div class="nav-header">
         <a href="dashboard.html" class="back-link">← Back to Quest Log</a>
