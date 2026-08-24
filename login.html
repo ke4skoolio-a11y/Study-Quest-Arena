@@ -141,14 +141,21 @@
             <p>Start Improving Your Grades.</p>
 
             <form id="registration-form">
+                
                 <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" placeholder="e.g. MathGenius" required>
+                    <label for="username">Hunter Name (Username)</label>
+                    <input type="text" id="username" placeholder="e.g. MathGenius" autocomplete="username" required>
+                </div>
+                
+                <!-- NEW EMAIL FIELD -->
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="hunter@studyquest.com" autocomplete="email" required>
                 </div>
 
                 <div class="input-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Create a password" required>
+                    <input type="password" id="password" placeholder="Create a password" autocomplete="new-password" required>
                 </div>
 
                 <button type="submit" class="action-btn">Register Account</button>
@@ -170,17 +177,15 @@
         form.addEventListener('submit', async function(event) {
             event.preventDefault(); 
             
-            // We are wrapping everything in a "try" block. 
-            // If the code crashes at any point, it instantly jumps to the "catch" block at the bottom to tell us why.
             try {
+                // Grab all three values from your new form
                 const usernameInput = document.getElementById('username').value;
+                const emailInput = document.getElementById('email').value;
                 const passwordInput = document.getElementById('password').value;
                 
-                const dummyEmail = usernameInput + '@studyquest.com';
-
-                // 1. Create the secure login in the Supabase Auth Vault
+                // 1. Create the secure login using your REAL email
                 const { data: authData, error: authError } = await supabase.auth.signUp({
-                    email: dummyEmail,
+                    email: emailInput,
                     password: passwordInput,
                 });
 
@@ -189,7 +194,7 @@
                     return;
                 }
 
-                // 2. Insert Level 1 stats!
+                // 2. Insert Level 1 stats using your Username
                 const { error: dbError } = await supabase
                     .from('player_stats')
                     .insert([
@@ -212,7 +217,6 @@
                 }
                 
             } catch (fatalError) {
-                // If a silent crash happens, this will force an alert box to show the exact error!
                 alert("CRITICAL JAVASCRIPT ERROR: " + fatalError.message);
             }
         });
