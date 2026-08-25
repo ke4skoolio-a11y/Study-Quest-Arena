@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Algebra | Study Quest</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -101,53 +101,51 @@
             flex-wrap: wrap;
         }
 
-        /* INDIVIDUAL LIQUID GLASS LETTERS (Positioned where your white circle was) */
+        /* =========================================
+           INDIVIDUAL LIQUID GLASS LETTERS 
+           ========================================= */
         .glass-title-container {
             position: absolute;
-            top: 40px; /* Positioned near the top where you circled */
+            top: 70px; /* Positioned near the roof overhang */
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 12px; /* Space between each individual letter box */
+            gap: 8px; /* Tighter gap matching your reference */
             z-index: 10;
             pointer-events: none;
         }
 
         .glass-letter {
-            background: var(--glass-fill);
-            backdrop-filter: blur(20px) saturate(120%);
-            -webkit-backdrop-filter: blur(20px) saturate(120%);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            color: white;
-            width: 55px;
-            height: 65px;
-            border-radius: 16px;
+            width: 50px;
+            height: 60px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 800; /* Extra bold text */
             text-transform: uppercase;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
+            color: #ffffff;
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.4);
         }
 
-        /* Individual glossy sheen per letter */
-        .glass-letter::before {
-            content: "";
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: linear-gradient(120deg,
-                rgba(255,255,255,.4) 0%,
-                rgba(255,255,255,0) 40%,
-                rgba(255,255,255,.2) 100%);
-            pointer-events: none;
-            mix-blend-mode: overlay;
+        /* Dark Frosted Glass Variant */
+        .letter-dark {
+            background: rgba(30, 40, 50, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
+        /* Bright Blue Glass Variant */
+        .letter-blue {
+            background: rgba(74, 158, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* =========================================
+           WIDGETS (Timer & Phone)
+           ========================================= */
         /* Focus Timer */
         .liquid-card {
             background: var(--glass-fill); 
@@ -295,15 +293,15 @@
             <a href="dashboard.html" class="back-link">← Back to Quest Log</a>
         </div>
 
-        <!-- INDIVIDUAL LIQUID GLASS LETTERS (Positioned at top roof area) -->
+        <!-- INDIVIDUAL LIQUID GLASS LETTERS (Positioned near the roof overhang) -->
         <div class="glass-title-container">
-            <div class="glass-letter">A</div>
-            <div class="glass-letter">L</div>
-            <div class="glass-letter">G</div>
-            <div class="glass-letter">E</div>
-            <div class="glass-letter">B</div>
-            <div class="glass-letter">R</div>
-            <div class="glass-letter">A</div>
+            <div class="glass-letter letter-dark">A</div>
+            <div class="glass-letter letter-dark">L</div>
+            <div class="glass-letter letter-dark">G</div>
+            <div class="glass-letter letter-dark">E</div>
+            <div class="glass-letter letter-blue">B</div>
+            <div class="glass-letter letter-blue">R</div>
+            <div class="glass-letter letter-blue">A</div>
         </div>
 
         <div class="main-content">
