@@ -68,16 +68,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 20px 60px; /* Added padding to keep widgets off the extreme edge of the screen */
             position: relative;
             z-index: 2;
         }
 
         .widget-layout {
             display: flex;
-            gap: 40px;
             align-items: center; 
-            justify-content: center;
+            /* SPACE-BETWEEN is the magic property that pushes them to the sides */
+            justify-content: space-between; 
+            width: 100%;
+            max-width: 1400px; /* Allows the container to spread out wide */
             flex-wrap: wrap;
         }
 
@@ -92,7 +94,6 @@
             border-radius: 36px; 
             padding: 40px 30px;
             width: 340px;
-            /* Height removed to let it size naturally and stay compact */
             box-shadow: var(--glass-shadow);
             text-align: center;
             display: flex;
