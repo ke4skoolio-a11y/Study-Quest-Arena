@@ -120,9 +120,109 @@
         @keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-40px); opacity: 0; } }
 
         /* =========================================
-           2. WORKSHEET SECTION (Scroll Down)
+           2. NAVIGATION TABS (Between Hero & Worksheet)
            ========================================= */
-        .worksheet-section { padding: 80px 16px; background: var(--ws-bg); color: var(--ws-ink); font-family: "Georgia", "Iowan Old Style", "Times New Roman", serif; min-height: 100vh; }
+        .tabs-wrapper {
+            display: flex;
+            justify-content: center;
+            padding: 40px 16px 20px; 
+            background: var(--ws-bg); 
+        }
+
+        .tabs-container {
+            display: inline-flex;
+            align-items: center;
+            background: #ffffff;
+            padding: 8px 12px;
+            border-radius: 999px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            gap: 8px;
+        }
+
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: #f4f4f5;
+            color: #4a5568;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .icon-btn:hover { background: #e2e8f0; }
+
+        .tab-item {
+            text-decoration: none;
+            color: #4a5568;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 999px;
+            transition: all 0.2s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .tab-item:hover {
+            background: #f4f4f5;
+            color: #1a202c;
+        }
+
+        /* The Active Blue Pill State */
+        .tab-item.active {
+            background: #eaf2ff;
+            color: var(--ws-accent);
+        }
+
+        /* Dropdown Functionality */
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 10px;
+            background: #ffffff;
+            min-width: 180px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 8px;
+            z-index: 50;
+            flex-direction: column;
+        }
+
+        .dropdown:hover .dropdown-content { display: flex; }
+        
+        .dropdown-content a {
+            text-decoration: none;
+            color: #4a5568;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background: #f4f4f5;
+            color: #1a202c;
+        }
+
+        /* Highlighted item inside the dropdown */
+        .dropdown-content a.active-drop {
+            color: var(--ws-accent);
+            font-weight: 600;
+            background: #f8faff;
+        }
+
+        /* =========================================
+           3. WORKSHEET SECTION
+           ========================================= */
+        .worksheet-section { padding: 20px 16px 80px; background: var(--ws-bg); color: var(--ws-ink); font-family: "Georgia", "Iowan Old Style", "Times New Roman", serif; min-height: 100vh; }
         .sheet { max-width: 760px; margin: 0 auto; background: var(--ws-paper); border: 1px solid var(--ws-line); border-radius: 12px; padding: 48px 52px 60px; box-shadow: 0 20px 40px rgba(20,30,50,.06); }
         
         .ws-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--ws-ink); padding-bottom: 18px; margin-bottom: 24px; font-family: 'Poppins', sans-serif; }
@@ -169,12 +269,11 @@
         .page-btn:hover:not(:disabled) { background: #2a44a6; }
         .page-num { font-weight: 600; color: var(--ws-ink-dim); }
 
-        /* Question 5 Layout */
+        /* Question Layouts */
         .q5-layout { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 15px; }
         .q5-graph-col { flex: 0 0 auto; }
         .q5-questions-col { flex: 1; min-width: 250px; }
 
-        /* Question 6 Layout */
         .system-wrap { display: inline-flex; align-items: center; margin-left: 10px; }
         .system-brace { font-size: 38px; font-weight: 300; margin-right: 8px; font-family: -apple-system, sans-serif; color: var(--ws-ink); }
         .system-eqs { display: flex; flex-direction: column; line-height: 1.5; font-style: italic; font-family: "Georgia", serif; }
@@ -202,7 +301,6 @@
 
         <div class="main-content">
             <div class="widget-layout">
-                
                 <div class="liquid-card">
                     <div class="liquid-timer-text" id="timer-text">25:00</div>
                     <div class="liquid-bar-bg"><div class="liquid-mana-fill" id="mana-bar"></div></div>
@@ -242,8 +340,37 @@
                     <button class="solve-btn" id="solveBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"></path></svg> Solved problem <span class="plus-xp">+20 XP</span></button>
                     <button class="reset-btn" id="resetBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 4v6h6"></path><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg> RESET</button>
                 </div>
-
             </div>
+        </div>
+    </div>
+
+    <!-- TAB NAVIGATION -->
+    <div class="tabs-wrapper">
+        <div class="tabs-container">
+            <!-- Icon Button -->
+            <button class="icon-btn">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                </svg>
+            </button>
+            
+            <!-- Lessons Dropdown (Active Tab) -->
+            <div class="tab-item active dropdown">
+                Lessons
+                <div class="dropdown-content">
+                    <a href="#" class="active-drop">Lines & Equations</a>
+                    <a href="#">Add more...</a>
+                </div>
+            </div>
+            
+            <!-- Other Tabs -->
+            <a href="#" class="tab-item">Index Cards</a>
+            <a href="#" class="tab-item">Images</a>
         </div>
     </div>
 
@@ -407,7 +534,7 @@
         }
 
         document.getElementById('prev-page').addEventListener('click', () => { if(currentPage > 1) { currentPage--; updatePagination(); }});
-        document.getElementById('next-page').addEventListener('click', () => { if(currentPage < totalPages) { currentPage++; updatePagination(); window.scrollTo({ top: document.querySelector('.worksheet-section').offsetTop, behavior: 'smooth' }); }});
+        document.getElementById('next-page').addEventListener('click', () => { if(currentPage < totalPages) { currentPage++; updatePagination(); window.scrollTo({ top: document.querySelector('.tabs-wrapper').offsetTop, behavior: 'smooth' }); }});
 
         // --- 2. TIMER & XP LOGIC ---
         let timerInterval; let timeLeft = 1500; const totalTime = 1500; let isRunning = false;
