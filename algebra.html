@@ -124,6 +124,7 @@
            ========================================= */
         .worksheet-section { padding: 80px 16px; background: var(--ws-bg); color: var(--ws-ink); font-family: "Georgia", "Iowan Old Style", "Times New Roman", serif; min-height: 100vh; }
         .sheet { max-width: 760px; margin: 0 auto; background: var(--ws-paper); border: 1px solid var(--ws-line); border-radius: 12px; padding: 48px 52px 60px; box-shadow: 0 20px 40px rgba(20,30,50,.06); }
+        
         .ws-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--ws-ink); padding-bottom: 18px; margin-bottom: 24px; font-family: 'Poppins', sans-serif; }
         .ws-field { font-size: 14px; margin-bottom: 10px; }
         .ws-blank { display: inline-block; min-width: 180px; border-bottom: 1px solid var(--ws-ink-dim); margin-left: 6px; outline: none; padding-left: 8px; color: var(--ws-accent); font-family: "Georgia", serif; }
@@ -136,8 +137,11 @@
         .q-text { font-size: 16px; line-height: 1.65; display: inline; }
         .sub { margin: 14px 0 0 26px; }
         .sub-label { font-weight: 700; margin-right: 4px; font-family: 'Poppins', sans-serif; }
-        .work-lines { margin-top: 16px; min-height: 56px; background-image: repeating-linear-gradient(to bottom, transparent, transparent 27px, var(--ws-line) 27px, var(--ws-line) 28px); line-height: 28px; font-size: 16px; outline: none; padding: 0 4px; color: var(--ws-accent); transition: background-image 0.2s ease; }
-        .work-lines:focus { background-image: repeating-linear-gradient(to bottom, transparent, transparent 27px, rgba(59, 91, 219, 0.3) 27px, rgba(59, 91, 219, 0.3) 28px); }
+        
+        /* Blank Workspace */
+        .work-lines { margin-top: 16px; min-height: 60px; font-size: 16px; outline: none; padding: 12px; color: var(--ws-accent); border-radius: 8px; border: 1px dashed transparent; transition: background-color 0.2s ease, border 0.2s ease; }
+        .work-lines:focus { background-color: rgba(59, 91, 219, 0.04); border: 1px dashed rgba(59, 91, 219, 0.3); }
+
         .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 6px; font-size: 0.9em; transform: translateY(-2px); }
         .frac .num { border-bottom: 2px solid var(--ws-accent); padding: 0 4px; min-width: 16px; text-align: center; outline: none; }
         .frac .den { padding: 0 4px; min-width: 16px; text-align: center; outline: none; }
@@ -170,6 +174,7 @@
         .q5-graph-col { flex: 0 0 auto; }
         .q5-questions-col { flex: 1; min-width: 250px; }
 
+        /* Question 6 Layout */
         .system-wrap { display: inline-flex; align-items: center; margin-left: 10px; }
         .system-brace { font-size: 38px; font-weight: 300; margin-right: 8px; font-family: -apple-system, sans-serif; color: var(--ws-ink); }
         .system-eqs { display: flex; flex-direction: column; line-height: 1.5; font-style: italic; font-family: "Georgia", serif; }
@@ -249,19 +254,21 @@
 
     <div class="worksheet-section">
         <div class="sheet">
-            <div class="ws-header">
-                <div>
-                    <div class="ws-field">Name:<span class="ws-blank" contenteditable="true"></span></div>
-                    <div class="ws-field">Date:<span class="ws-blank" contenteditable="true"></span></div>
-                </div>
-                <div class="ws-course">Math 115<br>Lines &amp; Linear Equations</div>
-            </div>
-
-            <div class="exam-title">Practice Set — Writing &amp; Graphing Linear Equations</div>
-            <div class="directions">Directions: Please read carefully and answer all questions. Show all work to receive full credit. Box your final answer.</div>
 
             <!-- ===================== PAGE 1 ===================== -->
             <div id="page-1" class="page active">
+                
+                <div class="ws-header">
+                    <div>
+                        <div class="ws-field">Name:<span class="ws-blank" contenteditable="true"></span></div>
+                        <div class="ws-field">Date:<span class="ws-blank" contenteditable="true"></span></div>
+                    </div>
+                    <div class="ws-course">Math 115<br>Lines &amp; Linear Equations</div>
+                </div>
+
+                <div class="exam-title">Practice Set — Writing &amp; Graphing Linear Equations</div>
+                <div class="directions">Directions: Please read carefully and answer all questions. Show all work to receive full credit. Box your final answer.</div>
+
                 <div class="question">
                     <span class="q-num">1.</span>
                     <span class="q-text">Write an equation of a line passing through the two points A(2, 16) and B(&minus;1, 7).</span>
@@ -358,14 +365,17 @@
                     </div>
                 </div>
 
-                <div class="question">
-                    <span class="q-num">6.</span>
-                    <span class="q-text" style="vertical-align: top;">Solve the following systems of equations using any method:</span>
-                    <div class="system-wrap">
-                        <span class="system-brace">{</span>
-                        <div class="system-eqs">
-                            <span>3x + y = 11</span>
-                            <span>x + 2y = 7</span>
+                <!-- ALIGNED QUESTION 6 -->
+                <div class="question" style="display: flex; flex-direction: column;">
+                    <div style="display: flex; align-items: center; flex-wrap: wrap;">
+                        <span class="q-num" style="margin-right: 8px;">6.</span>
+                        <span class="q-text">Solve the following systems of equations using any method:</span>
+                        <div class="system-wrap">
+                            <span class="system-brace">{</span>
+                            <div class="system-eqs">
+                                <span>3x + y = 11</span>
+                                <span>x + 2y = 7</span>
+                            </div>
                         </div>
                     </div>
                     <div class="work-lines" contenteditable="true" style="min-height: 168px;"></div>
@@ -501,12 +511,10 @@
             path.setAttribute('d', pathD); path.setAttribute('fill', 'none'); path.setAttribute('stroke', '#1c2330'); path.setAttribute('stroke-width', '2.5');
             g.appendChild(path);
 
-            // Solid dot at (-3, -5)
             const dot = document.createElementNS(ns, 'circle');
             dot.setAttribute('cx', cx - 3*step); dot.setAttribute('cy', cy - (-5)*step); dot.setAttribute('r', '4.5'); dot.setAttribute('fill', '#1c2330');
             g.appendChild(dot);
 
-            // Open circle at (2, 0)
             const openCirc = document.createElementNS(ns, 'circle');
             openCirc.setAttribute('cx', cx + 2*step); openCirc.setAttribute('cy', cy - 0*step); openCirc.setAttribute('r', '4.5'); openCirc.setAttribute('fill', '#ffffff'); openCirc.setAttribute('stroke', '#1c2330'); openCirc.setAttribute('stroke-width', '2');
             g.appendChild(openCirc);
