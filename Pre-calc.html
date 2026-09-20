@@ -37,6 +37,7 @@
             padding: 0;
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--ws-bg);
+            overflow-x: hidden; /* Prevents horizontal scroll from sidebar */
         }
 
         /* =========================================
@@ -139,85 +140,18 @@
             gap: 8px;
         }
 
-        .icon-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: none;
-            background: #f4f4f5;
-            color: #4a5568;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
+        .icon-btn { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: none; background: #f4f4f5; color: #4a5568; cursor: pointer; transition: background 0.2s; }
         .icon-btn:hover { background: #e2e8f0; }
+        .tab-item { text-decoration: none; color: #4a5568; font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 999px; transition: all 0.2s ease; position: relative; cursor: pointer; }
+        .tab-item:hover { background: #f4f4f5; color: #1a202c; }
+        .tab-item.active { background: #eaf2ff; color: var(--ws-accent); }
 
-        .tab-item {
-            text-decoration: none;
-            color: #4a5568;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 999px;
-            transition: all 0.2s ease;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .tab-item:hover {
-            background: #f4f4f5;
-            color: #1a202c;
-        }
-
-        /* The Active Blue Pill State */
-        .tab-item.active {
-            background: #eaf2ff;
-            color: var(--ws-accent);
-        }
-
-        /* Dropdown Functionality */
         .dropdown { position: relative; }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin-top: 10px;
-            background: #ffffff;
-            min-width: 180px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            padding: 8px;
-            z-index: 50;
-            flex-direction: column;
-        }
-
+        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; margin-top: 10px; background: #ffffff; min-width: 180px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); padding: 8px; z-index: 50; flex-direction: column; }
         .dropdown:hover .dropdown-content { display: flex; }
-        
-        .dropdown-content a {
-            text-decoration: none;
-            color: #4a5568;
-            padding: 10px 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-
-        .dropdown-content a:hover {
-            background: #f4f4f5;
-            color: #1a202c;
-        }
-
-        /* Highlighted item inside the dropdown */
-        .dropdown-content a.active-drop {
-            color: var(--ws-accent);
-            font-weight: 600;
-            background: #f8faff;
-        }
+        .dropdown-content a { text-decoration: none; color: #4a5568; padding: 10px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: background 0.2s; }
+        .dropdown-content a:hover { background: #f4f4f5; color: #1a202c; }
+        .dropdown-content a.active-drop { color: var(--ws-accent); font-weight: 600; background: #f8faff; }
 
         /* =========================================
            3. WORKSHEET SECTION
@@ -277,9 +211,174 @@
         .system-wrap { display: inline-flex; align-items: center; margin-left: 10px; }
         .system-brace { font-size: 38px; font-weight: 300; margin-right: 8px; font-family: -apple-system, sans-serif; color: var(--ws-ink); }
         .system-eqs { display: flex; flex-direction: column; line-height: 1.5; font-style: italic; font-family: "Georgia", serif; }
+
+        /* =========================================
+           4. SIDEBAR CHEAT SHEET
+           ========================================= */
+        .cheat-sheet-tab {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: var(--glass-fill);
+            backdrop-filter: blur(20px) saturate(120%);
+            -webkit-backdrop-filter: blur(20px) saturate(120%);
+            border: 1px solid var(--glass-border);
+            border-right: none;
+            padding: 15px 20px;
+            border-radius: 20px 0 0 20px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: -4px 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 90;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .cheat-sheet-tab:hover {
+            background: rgba(255, 255, 255, 0.25);
+            padding-right: 30px;
+        }
+
+        .glass-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 400px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(30px) saturate(150%);
+            -webkit-backdrop-filter: blur(30px) saturate(150%);
+            border-left: 1px solid var(--glass-border);
+            box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .glass-sidebar.open { right: 0; }
+
+        .sidebar-header {
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .sidebar-header h2 {
+            margin: 0;
+            color: #1c2330;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #1c2330;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.1);
+        }
+
+        .sidebar-content {
+            padding: 30px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .sidebar-content::-webkit-scrollbar { width: 6px; }
+        .sidebar-content::-webkit-scrollbar-track { background: transparent; }
+        .sidebar-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 10px; }
+
+        .tip-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .tip-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.05rem;
+            color: var(--ws-accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-card p {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            font-family: "Georgia", serif;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.2);
+            z-index: 95;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
     </style>
 </head>
 <body>
+
+    <!-- SIDEBAR CHEAT SHEET -->
+    <button id="triggerTab" class="cheat-sheet-tab">
+        <span>💡</span> Tips & Formulas
+    </button>
+    <div id="overlay" class="sidebar-overlay"></div>
+    <div id="sidebar" class="glass-sidebar">
+        <div class="sidebar-header">
+            <h2>MATH 115 REVIEW</h2>
+            <button id="closeBtn" class="close-btn">×</button>
+        </div>
+        <div class="sidebar-content">
+            <div class="tip-card">
+                <h3>📌 Function Notation</h3>
+                <p>Remember: Inside the parentheses is your <b>x-value</b> (input), and what it equals is your <b>y-value</b> (output).<br><br><i>Example: f(-2) = 4 means the point is (-2, 4).</i></p>
+            </div>
+            <div class="tip-card">
+                <h3>📐 Slope Formula</h3>
+                <p>m = (y₂ - y₁) / (x₂ - x₁)<br><br>Always double-check your negative signs when subtracting!</p>
+            </div>
+            <div class="tip-card">
+                <h3>⚖️ Perpendicular Lines</h3>
+                <p>Perpendicular lines have <b>opposite reciprocal</b> slopes.<br><br>If Line L has a slope of <i>2/3</i>, the perpendicular slope is <i>-3/2</i>.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- HERO SECTION -->
     <div class="hero-section">
@@ -688,6 +787,27 @@
             const clearBtn = document.querySelector(`.grid-clear[data-target="${svg.id}"]`);
             if(clearBtn){ clearBtn.addEventListener('click', () => { points.length = 0; redraw(); }); }
         }
+
+        // --- 5. SIDEBAR CHEAT SHEET LOGIC ---
+        const triggerTab = document.getElementById('triggerTab');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('closeBtn');
+        const overlay = document.getElementById('overlay');
+
+        triggerTab.addEventListener('click', () => {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+            triggerTab.style.transform = 'translateY(-50%) translateX(150%)'; // Hides tab
+        });
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+            triggerTab.style.transform = 'translateY(-50%) translateX(0)'; // Shows tab
+        }
+
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
     </script>
 </body>
 </html>
