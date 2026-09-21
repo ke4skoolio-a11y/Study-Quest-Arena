@@ -537,7 +537,7 @@
                 </ul>
             </aside>
 
-            <!-- MAIN CONTENT (Image Viewer) -->
+<!-- MAIN CONTENT (Image Viewer) -->
             <main class="sheet">
                 <!-- PAGE 1 IMAGE -->
                 <div id="page-1" class="page active">
@@ -549,10 +549,20 @@
                     <img src="Standard-1/Standard1pg2.jpg" alt="Standard 1 Work Done - Page 2" class="works-img">
                 </div>
 
+                <!-- PAGE 3 IMAGE -->
+                <div id="page-3" class="page">
+                    <img src="Standard-1/Standard1pg3.jpg" alt="Standard 1 Work Done - Page 3" class="works-img">
+                </div>
+
+                <!-- PAGE 4 IMAGE -->
+                <div id="page-4" class="page">
+                    <img src="Standard-1/Standard1pg4.jpg" alt="Standard 1 Work Done - Page 4" class="works-img">
+                </div>
+
                 <!-- PAGINATION CONTROLS -->
                 <div class="pagination">
                     <button id="prev-page" class="page-btn" disabled>← Previous</button>
-                    <span id="page-num" class="page-num">Page 1 of 2</span>
+                    <span id="page-num" class="page-num">Page 1 of 4</span>
                     <button id="next-page" class="page-btn">Next →</button>
                 </div>
             </main>
@@ -564,7 +574,7 @@
     <script>
         // --- 1. PAGINATION LOGIC (For Image Viewer) ---
         let currentPage = 1;
-        const totalPages = 2;
+        const totalPages = 4;
 
         function updatePagination() {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
