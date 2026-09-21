@@ -154,43 +154,79 @@
         .dropdown-content a.active-drop { color: var(--ws-accent); font-weight: 600; background: #f8faff; }
 
         /* =========================================
-           3. WORKSHEET SECTION
+           3. WORKSHEET SECTION & SIDEBAR LAYOUT
            ========================================= */
-        .worksheet-section { padding: 20px 16px 80px; background: var(--ws-bg); color: var(--ws-ink); font-family: "Georgia", "Iowan Old Style", "Times New Roman", serif; min-height: 100vh; }
-        .sheet { max-width: 760px; margin: 0 auto; background: var(--ws-paper); border: 1px solid var(--ws-line); border-radius: 12px; padding: 48px 52px 60px; box-shadow: 0 20px 40px rgba(20,30,50,.06); }
-        
-        .ws-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--ws-ink); padding-bottom: 18px; margin-bottom: 24px; font-family: 'Poppins', sans-serif; }
-        .ws-field { font-size: 14px; margin-bottom: 10px; }
-        .ws-blank { display: inline-block; min-width: 180px; border-bottom: 1px solid var(--ws-ink-dim); margin-left: 6px; outline: none; padding-left: 8px; color: var(--ws-accent); font-family: "Georgia", serif; }
-        .ws-course { text-align: right; font-size: 13px; color: var(--ws-ink-dim); line-height: 1.5; }
-        .exam-title { text-align: center; font-size: 16px; font-weight: 700; margin: 6px 0 22px; font-family: 'Poppins', sans-serif; }
-        .directions { font-size: 13px; color: var(--ws-ink-dim); font-style: italic; margin-bottom: 36px; font-family: 'Poppins', sans-serif; line-height: 1.6; }
-        
-        .question { margin-bottom: 38px; }
-        .q-num { font-weight: 700; font-size: 16px; font-family: 'Poppins', sans-serif; }
-        .q-text { font-size: 16px; line-height: 1.65; display: inline; }
-        .sub { margin: 14px 0 0 26px; }
-        .sub-label { font-weight: 700; margin-right: 4px; font-family: 'Poppins', sans-serif; }
-        
-        /* Blank Workspace */
-        .work-lines { margin-top: 16px; min-height: 60px; font-size: 16px; outline: none; padding: 12px; color: var(--ws-accent); border-radius: 8px; border: 1px dashed transparent; transition: background-color 0.2s ease, border 0.2s ease; }
-        .work-lines:focus { background-color: rgba(59, 91, 219, 0.04); border: 1px dashed rgba(59, 91, 219, 0.3); }
+        .worksheet-section { 
+            padding: 20px 16px 80px; 
+            background: var(--ws-bg); 
+            color: var(--ws-ink); 
+            font-family: "Georgia", "Iowan Old Style", "Times New Roman", serif; 
+            min-height: 100vh; 
+        }
 
-        .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 6px; font-size: 0.9em; transform: translateY(-2px); }
-        .frac .num { border-bottom: 2px solid var(--ws-accent); padding: 0 4px; min-width: 16px; text-align: center; outline: none; }
-        .frac .den { padding: 0 4px; min-width: 16px; text-align: center; outline: none; }
-        .frac .num:empty::before, .frac .den:empty::before { content: "?"; color: #a0aec0; }
-        .math-toolbar { position: absolute; display: none; background: #1c2330; padding: 6px; border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); z-index: 100; transform: translateY(-100%); margin-top: -10px; font-family: 'Poppins', sans-serif; }
-        .math-toolbar.visible { display: flex; }
-        .math-toolbar button { background: #39424f; color: #ffffff; border: 1px solid #4a5568; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600; transition: background 0.15s; }
-        .math-toolbar button:hover { background: var(--ws-accent); }
-        .grid-wrap { margin-top: 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        svg.grid text { font-family: 'Poppins', sans-serif; font-size: 11px; fill: var(--ws-ink-dim); }
-        svg.grid { cursor: crosshair; touch-action: none; user-select: none; }
-        .grid-tools { display: flex; align-items: center; gap: 14px; font-family: 'Poppins', sans-serif; }
-        .grid-hint { font-size: 11.5px; color: var(--ws-ink-dim); }
-        .grid-clear { font-size: 12px; font-weight: 600; color: var(--ws-accent); background: none; border: 1px solid var(--ws-accent); border-radius: 999px; padding: 5px 14px; cursor: pointer; font-family: inherit; transition: background .15s ease, color .15s ease; }
-        .grid-clear:hover { background: var(--ws-accent); color: #fff; }
+        /* Flex Container for Left Sidebar + Main Sheet */
+        .standard-container {
+            display: flex;
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+
+        /* Left Side Navigation */
+        .left-sidebar {
+            width: 240px;
+            background: var(--ws-paper);
+            border: 1px solid var(--ws-line);
+            border-radius: 12px;
+            padding: 24px 16px;
+            box-shadow: 0 20px 40px rgba(20,30,50,.06);
+            flex-shrink: 0;
+            position: sticky;
+            top: 40px; /* Stays on screen as you scroll down */
+        }
+
+        .left-nav { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 8px; 
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .left-nav li {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--ws-ink-dim);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .left-nav li:hover { background: #f4f4f5; color: var(--ws-ink); }
+        .left-nav li.active { background: #eaf2ff; color: var(--ws-accent); }
+
+        /* Main Image Viewer Sheet */
+        .sheet { 
+            flex-grow: 1; /* Takes up remaining space */
+            background: var(--ws-paper); 
+            border: 1px solid var(--ws-line); 
+            border-radius: 12px; 
+            padding: 48px 52px 60px; 
+            box-shadow: 0 20px 40px rgba(20,30,50,.06); 
+        }
+
+        .works-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--ws-line);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: block;
+        }
 
         /* Pagination Settings */
         .page { display: none; }
@@ -203,17 +239,8 @@
         .page-btn:hover:not(:disabled) { background: #2a44a6; }
         .page-num { font-weight: 600; color: var(--ws-ink-dim); }
 
-        /* Question Layouts */
-        .q5-layout { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 15px; }
-        .q5-graph-col { flex: 0 0 auto; }
-        .q5-questions-col { flex: 1; min-width: 250px; }
-
-        .system-wrap { display: inline-flex; align-items: center; margin-left: 10px; }
-        .system-brace { font-size: 38px; font-weight: 300; margin-right: 8px; font-family: -apple-system, sans-serif; color: var(--ws-ink); }
-        .system-eqs { display: flex; flex-direction: column; line-height: 1.5; font-style: italic; font-family: "Georgia", serif; }
-
         /* =========================================
-           4. SIDEBAR CHEAT SHEET
+           4. RIGHT SIDEBAR CHEAT SHEET
            ========================================= */
         .cheat-sheet-tab {
             position: fixed;
@@ -248,8 +275,8 @@
         .glass-sidebar {
             position: fixed;
             top: 0;
-            right: -600px; /* Pushed further right to hide the wider panel */
-            width: 550px; /* Increased from 400px for a wider card */
+            right: -600px;
+            width: 550px;
             height: 100vh;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(30px) saturate(150%);
@@ -273,12 +300,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.3);
         }
 
-        .sidebar-header h2 {
-            margin: 0;
-            color: #1c2330;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-        }
+        .sidebar-header h2 { margin: 0; color: #1c2330; font-size: 1.4rem; letter-spacing: 1px; }
 
         .close-btn {
             background: rgba(255, 255, 255, 0.4);
@@ -295,17 +317,9 @@
             transition: background 0.2s, transform 0.2s;
         }
 
-        .close-btn:hover {
-            background: rgba(255, 255, 255, 0.8);
-            transform: scale(1.1);
-        }
+        .close-btn:hover { background: rgba(255, 255, 255, 0.8); transform: scale(1.1); }
 
-        .sidebar-content {
-            padding: 30px;
-            overflow-y: auto;
-            flex-grow: 1;
-        }
-
+        .sidebar-content { padding: 30px; overflow-y: auto; flex-grow: 1; }
         .sidebar-content::-webkit-scrollbar { width: 6px; }
         .sidebar-content::-webkit-scrollbar-track { background: transparent; }
         .sidebar-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 10px; }
@@ -320,54 +334,32 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
-        .tip-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.05rem;
-            color: var(--ws-accent);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tip-card p {
-            margin: 0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            font-family: "Georgia", serif;
-        }
+        .tip-card h3 { margin: 0 0 10px 0; font-size: 1.05rem; color: var(--ws-accent); display: flex; align-items: center; gap: 8px; }
+        .tip-card p { margin: 0; font-size: 0.95rem; line-height: 1.5; font-family: "Georgia", serif; }
 
         .sidebar-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.2);
-            z-index: 95;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.2);
+            z-index: 95; opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
         }
-
-        .sidebar-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
+        .sidebar-overlay.active { opacity: 1; pointer-events: all; }
     </style>
 </head>
 <body>
 
-    <!-- SIDEBAR CHEAT SHEET -->
+    <!-- RIGHT SIDEBAR CHEAT SHEET -->
     <button id="triggerTab" class="cheat-sheet-tab">
         <span>💡</span> Tips & Formulas
     </button>
     <div id="overlay" class="sidebar-overlay"></div>
     <div id="sidebar" class="glass-sidebar">
         <div class="sidebar-header">
-            <h2>Standard 2</h2>
+            <h2>Standard 1</h2>
             <button id="closeBtn" class="close-btn">×</button>
         </div>
         <div class="sidebar-content">
             <!-- Tip 1 -->
             <div class="tip-card">
-                <h3> Functions vs. One-to-One</h3>
+                <h3>📌 Functions vs. One-to-One</h3>
                 <p>
                     <b>Function Rule:</b> Every <i>x</i> has exactly one <i>y</i>. <i>x</i>-values cannot map to different outputs.<br>
                     <span style="color: #2e7d32; font-weight: bold;">✅ Pass:</span> (4, 8) & (3, 7)<br>
@@ -383,7 +375,7 @@
 
             <!-- Tip 2 -->
             <div class="tip-card">
-                <h3> Vertical & Horizontal Line Tests</h3>
+                <h3>📈 Vertical & Horizontal Line Tests</h3>
                 <p>
                     <b>Passes VLT, Fails HLT:</b><br> 
                     <i>y</i> is a function, but <b>not</b> one-to-one.<br><br>
@@ -487,8 +479,10 @@
             <div class="tab-item active dropdown">
                 Lessons
                 <div class="dropdown-content">
-                    <a href="#" class="active-drop">Lines & Equations</a>
-                    <a href="#">Add more...</a>
+                    <a href="#" class="active-drop">Standard 1</a>
+                    <a href="#">Standard 2</a>
+                    <a href="#">Standard 3</a>
+                    <a href="#">Standard 4</a>
                 </div>
             </div>
             
@@ -499,176 +493,46 @@
     </div>
 
     <!-- WORKSHEET SECTION -->
-    <div id="math-toolbar" class="math-toolbar">
-        <button id="add-frac-btn" type="button">Insert Fraction</button>
-    </div>
+    <div class="worksheet-section">
+        
+        <!-- NEW FLEX LAYOUT (Left Sidebar + Image Viewer) -->
+        <div class="standard-container">
+            
+            <!-- LEFT NAVIGATION MENU -->
+            <aside class="left-sidebar">
+                <ul class="left-nav">
+                    <li class="active">Works done</li>
+                    <li>Index card</li>
+                    <li>Quizzes</li>
+                </ul>
+            </aside>
 
-    <div class="sheet">
-
-            <!-- ===================== PAGE 1 ===================== -->
-            <div id="page-1" class="page active">
-                
-                <div class="ws-header">
-                    <div>
-                        <div class="ws-field">Name:<span class="ws-blank" contenteditable="true"></span></div>
-                        <div class="ws-field">Date:<span class="ws-blank" contenteditable="true"></span></div>
-                    </div>
-                    <div class="ws-course">Math 115<br>Pre-Calculus</div>
+            <!-- MAIN CONTENT (Image Viewer) -->
+            <main class="sheet">
+                <!-- PAGE 1 IMAGE -->
+                <div id="page-1" class="page active">
+                    <img src="Standard-1/Standard1pg1.jpg" alt="Standard 1 Work Done - Page 1" class="works-img">
                 </div>
 
-                <div class="exam-title">Quiz 1 — Pre-Calculus (Time: 20 Minutes)</div>
-                <div class="directions">Instructions: Show all your work for full credit. Sketch graphs neatly on the coordinate axes you draw (label axes, intercepts, and any key points). Partial credit will be given for correct work. Reminder: Calculators are not allowed.</div>
-                <!-- Question 1 -->
-                <div class="question">
-                    <span class="q-num">1.</span>
-                    <span class="q-text">Expected time about 7 minutes) Let <i>f(x) = &radic;<span style="text-decoration: overline;">x + 5</span></i>.</span>
-                    
-                    <div class="sub">
-                        <span class="sub-label">(a)</span>
-                        <span class="q-text"><b>(3 points)</b> Find the domain of <i>f</i>.</span>
-                        <div class="work-lines" contenteditable="true" style="min-height: 56px;"></div>
-                    </div>
-
-                    <div class="sub">
-                        <span class="sub-label">(b)</span>
-                        <span class="q-text"><b>(3 points)</b> Evaluate <i>f(-5) = </i> <span class="ws-blank" contenteditable="true" style="min-width: 40px;"></span>, <i>f(0) = </i> <span class="ws-blank" contenteditable="true" style="min-width: 40px;"></span>, <i>f(11) = </i> <span class="ws-blank" contenteditable="true" style="min-width: 40px;"></span>.</span>
-                        <div class="work-lines" contenteditable="true" style="min-height: 56px;"></div>
-                    </div>
-
-                    <div class="sub">
-                        <span class="sub-label">(c)</span>
-                        <span class="q-text"><b>(5 points)</b> Sketch a graph of <i>f</i>. Label any intercepts or other key points you use.</span>
-                        <div class="work-lines" contenteditable="true" style="min-height: 28px;"></div>
-                        <div class="grid-wrap">
-                            <svg class="grid interactive-grid" width="260" height="260" viewBox="0 0 260 260" id="grid1c"></svg>
-                            <div class="grid-tools">
-                                <span class="grid-hint">Click to plot exactly 2 points &middot; click a point again to remove it</span>
-                                <button class="grid-clear" data-target="grid1c" type="button">Clear</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sub">
-                        <span class="sub-label">(d)</span>
-                        <span class="q-text"><b>(3 points)</b> State the range of <i>f</i>. Is <i>f</i> one-to-one? [Yes] [No] Justify.</span>
-                        <div class="work-lines" contenteditable="true" style="min-height: 56px;"></div>
-                    </div>
+                <!-- PAGE 2 IMAGE -->
+                <div id="page-2" class="page">
+                    <img src="Standard-1/Standard1pg2.jpg" alt="Standard 1 Work Done - Page 2" class="works-img">
                 </div>
 
-                <!-- Question 2 -->
-                <div class="question">
-                    <span class="q-num">2.</span>
-                    <span class="q-text"><b>(12 points, about 6 minutes)</b></span>
-                    
-                    <div class="sub">
-                        <span class="sub-label">(a)</span>
-                        <span class="q-text"><b>(4 points)</b> Consider the relation {(&minus;2, 4), (0, 0), (2, 4)}. Is it a function? [Yes] [No] Is it one-to-one? [Yes] [No] State its domain and range.</span>
-                        <div class="work-lines" contenteditable="true" style="min-height: 80px;"></div>
-                    </div>
-
-                    <div class="sub">
-                        <span class="sub-label">(b)</span>
-                        <span class="q-text"><b>(2 points)</b> Does the table represent a function? [Yes] [No] Explain.</span>
-                        <table style="border-collapse: collapse; text-align: center; margin: 15px 0 10px 30px; font-family: 'Georgia', serif;">
-                            <tr>
-                                <td style="border-right: 1px solid var(--ws-ink); border-bottom: 1px solid var(--ws-ink); padding: 2px 10px;"><i>x</i></td>
-                                <td style="border-bottom: 1px solid var(--ws-ink); padding: 2px 10px;">&minus;3</td>
-                                <td style="border-bottom: 1px solid var(--ws-ink); padding: 2px 10px;">&minus;1</td>
-                                <td style="border-bottom: 1px solid var(--ws-ink); padding: 2px 10px;">2</td>
-                                <td style="border-bottom: 1px solid var(--ws-ink); padding: 2px 10px;">2</td>
-                            </tr>
-                            <tr>
-                                <td style="border-right: 1px solid var(--ws-ink); padding: 2px 10px;"><i>y</i></td>
-                                <td style="padding: 2px 10px;">0</td>
-                                <td style="padding: 2px 10px;">4</td>
-                                <td style="padding: 2px 10px;">1</td>
-                                <td style="padding: 2px 10px;">5</td>
-                            </tr>
-                        </table>
-                        <div class="work-lines" contenteditable="true" style="min-height: 56px;"></div>
-                    </div>
+                <!-- PAGINATION CONTROLS -->
+                <div class="pagination">
+                    <button id="prev-page" class="page-btn" disabled>← Previous</button>
+                    <span id="page-num" class="page-num">Page 1 of 2</span>
+                    <button id="next-page" class="page-btn">Next →</button>
                 </div>
-            </div>
-
-            <!-- ===================== PAGE 2 ===================== -->
-            <div id="page-2" class="page">
-                
-                <div class="question">
-                    <div class="sub" style="margin-left: 0;">
-                        <span class="sub-label">(c)</span>
-                        <span class="q-text"><b>(6 points)</b> Find the domain of each function.</span>
-                        
-                        <div style="display: flex; justify-content: space-around; margin-top: 20px; font-family: 'Georgia', serif; font-size: 1.1rem;">
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                                <i>h(x) = </i>
-                                <span class="frac" style="font-size: 1rem;">
-                                    <span class="num" style="border-bottom: 1px solid var(--ws-ink);"><i>x</i></span>
-                                    <span class="den"><i>x&sup2; &minus; x &minus; 6</i></span>
-                                </span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 8px;">
-                                <i>p(x) = </i>
-                                <span class="frac" style="font-size: 1rem;">
-                                    <span class="num" style="border-bottom: 1px solid var(--ws-ink);"><i>&radic;<span style="text-decoration: overline;">x + 2</span></i></span>
-                                    <span class="den"><i>x &minus; 3</i></span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="work-lines" contenteditable="true" style="min-height: 140px;"></div>
-                    </div>
-                </div>
-
-                <!-- Question 3 -->
-                <div class="question">
-                    <span class="q-num">3.</span>
-                    <span class="q-text"><b>(14 points, about 7 minutes)</b></span>
-                    
-                    <div class="sub">
-                        <span class="sub-label">(a)</span>
-                        <span class="q-text" style="display: inline-flex; align-items: center; flex-wrap: wrap;">
-                            <b>(3 points)</b> Let <i>f(x) = </i> 
-                            <span class="frac" style="margin: 0 8px;">
-                                <span class="num" style="border-bottom: 1px solid var(--ws-ink);"><i>x</i></span>
-                                <span class="den"><i>x + 2</i></span>
-                            </span>
-                            . Evaluate <i>f(0)</i>, and <i>f(&minus;1)</i>.
-                        </span>
-                        <div class="work-lines" contenteditable="true" style="min-height: 84px;"></div>
-                    </div>
-
-                    <div class="sub">
-                        <span class="sub-label">(b)</span>
-                        <span class="q-text"><b>(3 points)</b> State the domain and range of the toolkit function <i>y = x&sup2;</i>. Is this function one-to-one? [Yes] [No] Explain.</span>
-                        <div class="work-lines" contenteditable="true" style="min-height: 84px;"></div>
-                    </div>
-
-                    <div class="sub">
-                        <span class="sub-label">(c)</span>
-                        <span class="q-text" style="display: inline-flex; align-items: center; flex-wrap: wrap;">
-                            <b>(8 points)</b> Let <i>g(x) = x&sup2; &minus; x</i>. Simplify the difference quotient 
-                            <span class="frac" style="margin: 0 8px;">
-                                <span class="num" style="border-bottom: 1px solid var(--ws-ink);"><i>g(x + h) &minus; g(x)</i></span>
-                                <span class="den"><i>h</i></span>
-                            </span>
-                            , <i>h &ne; 0</i>.
-                        </span>
-                        <div class="work-lines" contenteditable="true" style="min-height: 300px;"></div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- PAGINATION CONTROLS -->
-            <div class="pagination">
-                <button id="prev-page" class="page-btn" disabled>← Previous</button>
-                <span id="page-num" class="page-num">Page 1 of 2</span>
-                <button id="next-page" class="page-btn">Next →</button>
-            </div>
+            </main>
 
         </div>
+    </div>
+
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // --- 1. PAGINATION LOGIC ---
+        // --- 1. PAGINATION LOGIC (For Image Viewer) ---
         let currentPage = 1;
         const totalPages = 2;
 
@@ -713,129 +577,7 @@
         resetBtn.addEventListener('click', () => { current = 0; renderXP(true); resetBtn.classList.add('spin'); setTimeout(()=>resetBtn.classList.remove('spin'), 400); });
         renderXP(false);
 
-        // --- 3. WORKSHEET FRACTION TOOLBAR ---
-        const toolbar = document.getElementById('math-toolbar');
-        let activeEditor = null;
-        document.querySelectorAll('.work-lines').forEach(editor => {
-            editor.addEventListener('focus', (e) => { activeEditor = e.target; const rect = activeEditor.getBoundingClientRect(); toolbar.style.top = (rect.top + window.scrollY) + 'px'; toolbar.style.left = (rect.left + window.scrollX) + 'px'; toolbar.classList.add('visible'); });
-        });
-        document.addEventListener('mousedown', (e) => { if (!e.target.closest('.work-lines') && !e.target.closest('.math-toolbar')) { toolbar.classList.remove('visible'); activeEditor = null; } });
-        document.getElementById('add-frac-btn').addEventListener('click', (e) => { e.preventDefault(); if (activeEditor) { activeEditor.focus(); document.execCommand('insertHTML', false, `<span class="frac" contenteditable="false"><span class="num" contenteditable="true"></span><span class="den" contenteditable="true"></span></span>&nbsp;`); } });
-
-        // --- 4. GRID BUILDING & GRAPHING LOGIC ---
-        function buildGrid(svg, opts){
-            const w = opts.w, h = opts.h, range = opts.range, showNumbers = opts.showNumbers, cx = w/2, cy = h/2, step = (w/2) / range;
-            const ns = "http://www.w3.org/2000/svg";
-            const el = (tag, attrs) => { const e = document.createElementNS(ns, tag); for(const k in attrs) e.setAttribute(k, attrs[k]); return e; };
-
-            for(let i=-range;i<=range;i++){
-                svg.appendChild(el('line',{x1:cx+i*step,y1:0,x2:cx+i*step,y2:h,stroke:'#e3e7ef','stroke-width':1}));
-                svg.appendChild(el('line',{x1:0,y1:cy+i*step,x2:w,y2:cy+i*step,stroke:'#e3e7ef','stroke-width':1}));
-            }
-            svg.appendChild(el('line',{x1:0,y1:cy,x2:w,y2:cy,stroke:'#39424f','stroke-width':1.5}));
-            svg.appendChild(el('line',{x1:cx,y1:0,x2:cx,y2:h,stroke:'#39424f','stroke-width':1.5}));
-            svg.appendChild(el('polygon',{points:`${w-8},${cy-4} ${w},${cy} ${w-8},${cy+4}`, fill:'#39424f'}));
-            svg.appendChild(el('polygon',{points:`${cx-4},8 ${cx},0 ${cx+4},8`, fill:'#39424f'}));
-
-            const labelX = el('text',{x:w-10,y:cy-8,'text-anchor':'end'}); labelX.textContent='x';
-            const labelY = el('text',{x:cx+10,y:12}); labelY.textContent='y';
-            svg.appendChild(labelX); svg.appendChild(labelY);
-
-            if(showNumbers){
-                for(let i=-range;i<=range;i++){
-                    if(i===0) continue;
-                    const t = el('text',{x:cx+i*step,y:cy+14,'text-anchor':'middle'}); t.textContent = i; svg.appendChild(t);
-                    const t2 = el('text',{x:cx-8,y:cy-i*step+4,'text-anchor':'end'}); t2.textContent = i; svg.appendChild(t2);
-                }
-            }
-        }
-
-        // Initialize Interactive Grids (Page 1)
-        document.querySelectorAll('svg.interactive-grid').forEach(svg => {
-            const w = parseFloat(svg.getAttribute('width')), h = parseFloat(svg.getAttribute('height')), pad = 16, range = w > 280 ? 6 : 5;
-            const g = document.createElementNS("http://www.w3.org/2000/svg","g"); g.setAttribute("transform", `translate(0,${pad/2})`);
-            svg.setAttribute("viewBox", `0 0 ${w} ${h+pad}`); svg.setAttribute("height", h+pad); svg.appendChild(g);
-            buildGrid(g, {w:w, h:h, range:range, showNumbers:true}); initInteractive(svg, g, {w:w, h:h, range:range});
-        });
-
-        // Initialize Static Grid for Question 5 (Page 2)
-        const q5Svg = document.getElementById('grid-q5');
-        if (q5Svg) {
-            const w = 260, h = 260, pad = 16, range = 5;
-            const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-            g.setAttribute("transform", `translate(0,${pad/2})`);
-            q5Svg.setAttribute("viewBox", `0 0 ${w} ${h+pad}`); q5Svg.setAttribute("height", h+pad);
-            q5Svg.appendChild(g);
-            buildGrid(g, {w:w, h:h, range:range, showNumbers:true});
-            
-            // Draw the exact parabola y = -x^2 + 4 onto the grid
-            const cx = w/2, cy = h/2, step = (w/2)/range;
-            const ns = "http://www.w3.org/2000/svg";
-            
-            let pathD = "";
-            for(let x = -3; x <= 2.2; x += 0.1) {
-                let y = -(x*x) + 4;
-                let px = cx + x * step;
-                let py = cy - y * step;
-                if (x === -3) pathD += `M ${px} ${py} `;
-                else pathD += `L ${px} ${py} `;
-            }
-            
-            const path = document.createElementNS(ns, 'path');
-            path.setAttribute('d', pathD); path.setAttribute('fill', 'none'); path.setAttribute('stroke', '#1c2330'); path.setAttribute('stroke-width', '2.5');
-            g.appendChild(path);
-
-            const dot = document.createElementNS(ns, 'circle');
-            dot.setAttribute('cx', cx - 3*step); dot.setAttribute('cy', cy - (-5)*step); dot.setAttribute('r', '4.5'); dot.setAttribute('fill', '#1c2330');
-            g.appendChild(dot);
-
-            const openCirc = document.createElementNS(ns, 'circle');
-            openCirc.setAttribute('cx', cx + 2*step); openCirc.setAttribute('cy', cy - 0*step); openCirc.setAttribute('r', '4.5'); openCirc.setAttribute('fill', '#ffffff'); openCirc.setAttribute('stroke', '#1c2330'); openCirc.setAttribute('stroke-width', '2');
-            g.appendChild(openCirc);
-        }
-
-        function initInteractive(svg, g, opts){
-            const ns = "http://www.w3.org/2000/svg", cx = opts.w/2, cy = opts.h/2, step = (opts.w/2)/opts.range, range = opts.range;
-            const points = [], overlay = document.createElementNS(ns,"g"); overlay.setAttribute("class","overlay"); g.appendChild(overlay);
-            const el = (tag, attrs) => { const e = document.createElementNS(ns, tag); for(const k in attrs) e.setAttribute(k, attrs[k]); return e; };
-
-            function toLocal(evt){
-                const pt = svg.createSVGPoint(), src = evt.touches && evt.touches.length ? evt.touches[0] : evt;
-                pt.x = src.clientX; pt.y = src.clientY; return pt.matrixTransform(g.getScreenCTM().inverse());
-            }
-
-            function redraw(){
-                while(overlay.firstChild) overlay.removeChild(overlay.firstChild);
-                if(points.length === 2){
-                    const p1 = points[0], p2 = points[1], px1 = cx + p1.ux * step, py1 = cy - p1.uy * step, px2 = cx + p2.ux * step, py2 = cy - p2.uy * step;
-                    const dx = px2 - px1, dy = py2 - py1;
-                    if (dx !== 0 || dy !== 0) {
-                        const mult = 100, ex1 = px1 - dx * mult, ey1 = py1 - dy * mult, ex2 = px2 + dx * mult, ey2 = py2 + dy * mult;
-                        overlay.appendChild(el('line',{ x1: ex1, y1: ey1, x2: ex2, y2: ey2, stroke: '#3b5bdb', 'stroke-width': 2.25, 'stroke-linecap': 'round' }));
-                    }
-                }
-                points.forEach(p => {
-                    const px = cx + p.ux*step, py = cy - p.uy*step;
-                    overlay.appendChild(el('circle',{ cx:px, cy:py, r:5.5, fill:'#3b5bdb', stroke:'#ffffff', 'stroke-width':1.5 }));
-                    const label = el('text',{ x: px + 8, y: py - 8, 'font-size':11, fill:'#3b5bdb', 'font-weight':700 });
-                    label.textContent = `(${p.ux}, ${p.uy})`; overlay.appendChild(label);
-                });
-            }
-
-            function handleTap(evt){
-                evt.preventDefault(); const loc = toLocal(evt);
-                let ux = Math.max(-range, Math.min(range, Math.round((loc.x - cx)/step))), uy = Math.max(-range, Math.min(range, Math.round((cy - loc.y)/step)));
-                const idx = points.findIndex(p => p.ux === ux && p.uy === uy);
-                if(idx >= 0){ points.splice(idx,1); } else { if(points.length < 2) { points.push({ux, uy}); } }
-                redraw();
-            }
-
-            svg.addEventListener('click', handleTap); svg.addEventListener('touchend', handleTap);
-            const clearBtn = document.querySelector(`.grid-clear[data-target="${svg.id}"]`);
-            if(clearBtn){ clearBtn.addEventListener('click', () => { points.length = 0; redraw(); }); }
-        }
-
-        // --- 5. SIDEBAR CHEAT SHEET LOGIC ---
+        // --- 3. SIDEBAR CHEAT SHEET LOGIC ---
         const triggerTab = document.getElementById('triggerTab');
         const sidebar = document.getElementById('sidebar');
         const closeBtn = document.getElementById('closeBtn');
