@@ -128,6 +128,7 @@
             justify-content: center;
             padding: 40px 16px 20px; 
             background: var(--ws-bg); 
+            padding-right: 160px; /* Shifts tabs slightly left to align with content */
         }
 
         .tabs-container {
@@ -146,9 +147,35 @@
         .tab-item:hover { background: #f4f4f5; color: #1a202c; }
         .tab-item.active { background: #eaf2ff; color: var(--ws-accent); }
 
+        /* Dropdown Functionality with Invisible Bridge Fix */
         .dropdown { position: relative; }
-        .dropdown-content { display: none; position: absolute; top: 100%; left: 0; margin-top: 10px; background: #ffffff; min-width: 180px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); padding: 8px; z-index: 50; flex-direction: column; }
+        
+        /* The invisible bridge keeps the hover active when moving the mouse down */
+        .dropdown::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 15px; 
+        }
+
+        .dropdown-content { 
+            display: none; 
+            position: absolute; 
+            top: calc(100% + 10px); /* Positioned below the tab */
+            left: 0; 
+            background: #ffffff; 
+            min-width: 180px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            padding: 8px; 
+            z-index: 50; 
+            flex-direction: column; 
+        }
+        
         .dropdown:hover .dropdown-content { display: flex; }
+        
         .dropdown-content a { text-decoration: none; color: #4a5568; padding: 10px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: background 0.2s; }
         .dropdown-content a:hover { background: #f4f4f5; color: #1a202c; }
         .dropdown-content a.active-drop { color: var(--ws-accent); font-weight: 600; background: #f8faff; }
@@ -168,8 +195,10 @@
         .standard-container {
             display: flex;
             gap: 30px;
-            max-width: 1100px;
+            width: 100%;
+            max-width: 1200px; /* Made wider to hold both pieces comfortably */
             margin: 0 auto;
+            padding-right: 180px; /* Forces content to shift left, protecting the floating right tab */
             align-items: flex-start;
         }
 
@@ -217,6 +246,7 @@
             border-radius: 12px; 
             padding: 48px 52px 60px; 
             box-shadow: 0 20px 40px rgba(20,30,50,.06); 
+            min-width: 0; /* Prevents flexbox blowouts */
         }
 
         .works-img {
