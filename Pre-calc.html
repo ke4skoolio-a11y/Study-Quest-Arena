@@ -572,9 +572,9 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // --- 1. PAGINATION LOGIC (For Image Viewer) ---
+       // --- 1. PAGINATION LOGIC (For Image Viewer) ---
         let currentPage = 1;
-        const totalPages = 4;
+        const totalPages = 4; // Assuming you updated this to 4!
 
         function updatePagination() {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -584,9 +584,14 @@
             document.getElementById('next-page').disabled = currentPage === totalPages;
         }
 
-        document.getElementById('prev-page').addEventListener('click', () => { if(currentPage > 1) { currentPage--; updatePagination(); }});
-        document.getElementById('next-page').addEventListener('click', () => { if(currentPage < totalPages) { currentPage++; updatePagination(); window.scrollTo({ top: document.querySelector('.tabs-wrapper').offsetTop, behavior: 'smooth' }); }});
-
+        // Removed the window.scrollTo command from the next-page listener!
+        document.getElementById('prev-page').addEventListener('click', () => { 
+            if(currentPage > 1) { currentPage--; updatePagination(); }
+        });
+        
+        document.getElementById('next-page').addEventListener('click', () => { 
+            if(currentPage < totalPages) { currentPage++; updatePagination(); }
+        });
         // --- 2. TIMER & XP LOGIC ---
         let timerInterval; let timeLeft = 1500; const totalTime = 1500; let isRunning = false;
         function updateTimerDisplay() { const minutes = Math.floor(timeLeft / 60); const seconds = timeLeft % 60; document.getElementById('timer-text').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`; document.getElementById('mana-bar').style.width = ((timeLeft / totalTime) * 100) + '%'; }
