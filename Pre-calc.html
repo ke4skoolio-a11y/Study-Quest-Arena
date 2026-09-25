@@ -37,7 +37,7 @@
             padding: 0;
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--ws-bg);
-            overflow-x: hidden; /* Prevents horizontal scroll from sidebar */
+            overflow-x: hidden;
         }
 
         /* =========================================
@@ -128,7 +128,7 @@
             justify-content: center;
             padding: 40px 16px 20px; 
             background: var(--ws-bg); 
-            padding-right: 160px; /* Shifts tabs slightly left to align with content */
+            padding-right: 160px;
         }
 
         .tabs-container {
@@ -147,10 +147,8 @@
         .tab-item:hover { background: #f4f4f5; color: #1a202c; }
         .tab-item.active { background: #eaf2ff; color: var(--ws-accent); }
 
-        /* Dropdown Functionality with Invisible Bridge Fix */
+        /* Dropdown Functionality with Invisible Bridge */
         .dropdown { position: relative; }
-        
-        /* The invisible bridge keeps the hover active when moving the mouse down */
         .dropdown::after {
             content: '';
             position: absolute;
@@ -163,7 +161,7 @@
         .dropdown-content { 
             display: none; 
             position: absolute; 
-            top: calc(100% + 10px); /* Positioned below the tab */
+            top: calc(100% + 10px);
             left: 0; 
             background: #ffffff; 
             min-width: 180px; 
@@ -176,9 +174,22 @@
         
         .dropdown:hover .dropdown-content { display: flex; }
         
-        .dropdown-content a { text-decoration: none; color: #4a5568; padding: 10px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: background 0.2s; }
-        .dropdown-content a:hover { background: #f4f4f5; color: #1a202c; }
-        .dropdown-content a.active-drop { color: var(--ws-accent); font-weight: 600; background: #f8faff; }
+        .dropdown-content button { 
+            text-align: left;
+            background: none;
+            border: none;
+            width: 100%;
+            color: #4a5568; 
+            padding: 10px 12px; 
+            border-radius: 8px; 
+            font-size: 13px; 
+            font-weight: 500; 
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s; 
+        }
+        .dropdown-content button:hover { background: #f4f4f5; color: #1a202c; }
+        .dropdown-content button.active-drop { color: var(--ws-accent); font-weight: 600; background: #f8faff; }
 
         /* =========================================
            3. WORKSHEET SECTION & SIDEBAR LAYOUT
@@ -191,18 +202,16 @@
             min-height: 100vh; 
         }
 
-        /* Flex Container for Left Sidebar + Main Sheet */
         .standard-container {
             display: flex;
             gap: 30px;
             width: 100%;
-            max-width: 1200px; /* Made wider to hold both pieces comfortably */
+            max-width: 1200px;
             margin: 0 auto;
-            padding-right: 180px; /* Forces content to shift left, protecting the floating right tab */
+            padding-right: 180px;
             align-items: flex-start;
         }
 
-        /* Left Side Navigation */
         .left-sidebar {
             width: 240px;
             background: var(--ws-paper);
@@ -212,7 +221,7 @@
             box-shadow: 0 20px 40px rgba(20,30,50,.06);
             flex-shrink: 0;
             position: sticky;
-            top: 40px; /* Stays on screen as you scroll down */
+            top: 40px;
         }
 
         .left-nav { 
@@ -238,15 +247,14 @@
         .left-nav li:hover { background: #f4f4f5; color: var(--ws-ink); }
         .left-nav li.active { background: #eaf2ff; color: var(--ws-accent); }
 
-        /* Main Image Viewer Sheet */
         .sheet { 
-            flex-grow: 1; /* Takes up remaining space */
+            flex-grow: 1;
             background: var(--ws-paper); 
             border: 1px solid var(--ws-line); 
             border-radius: 12px; 
             padding: 48px 52px 60px; 
             box-shadow: 0 20px 40px rgba(20,30,50,.06); 
-            min-width: 0; /* Prevents flexbox blowouts */
+            min-width: 0;
         }
 
         .works-img {
@@ -383,7 +391,7 @@
     <div id="overlay" class="sidebar-overlay"></div>
     <div id="sidebar" class="glass-sidebar">
         <div class="sidebar-header">
-            <h2>Standard 3</h2>
+            <h2 id="sidebar-title">Standard 2</h2>
             <button id="closeBtn" class="close-btn">×</button>
         </div>
         <div class="sidebar-content">
@@ -493,7 +501,6 @@
     <!-- TAB NAVIGATION -->
     <div class="tabs-wrapper">
         <div class="tabs-container">
-            <!-- Icon Button -->
             <button class="icon-btn">
                 <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="8" y1="6" x2="21" y2="6"></line>
@@ -505,18 +512,17 @@
                 </svg>
             </button>
             
-            <!-- Lessons Dropdown (Active Tab) -->
+            <!-- Lessons Dropdown -->
             <div class="tab-item active dropdown">
-                Lessons
+                <span id="current-lesson-label">Standard 2</span>
                 <div class="dropdown-content">
-                    <a href="standard-1.html">Standard 1</a>
-                    <a href="pre-calc.html">Standard 2</a>
-                    <a href="standard-3.html" class="active-drop">Standard 3</a>
-                    <a href="#">Standard 4</a>
+                    <button type="button" onclick="loadStandard(1)">Standard 1</button>
+                    <button type="button" id="drop-std-2" class="active-drop" onclick="loadStandard(2)">Standard 2</button>
+                    <button type="button" id="drop-std-3" onclick="loadStandard(3)">Standard 3</button>
+                    <button type="button" onclick="loadStandard(4)">Standard 4</button>
                 </div>
             </div>
             
-            <!-- Other Tabs -->
             <a href="#" class="tab-item">Index Cards</a>
             <a href="#" class="tab-item">Images</a>
         </div>
@@ -524,8 +530,6 @@
 
     <!-- WORKSHEET SECTION -->
     <div class="worksheet-section">
-        
-        <!-- NEW FLEX LAYOUT (Left Sidebar + Image Viewer) -->
         <div class="standard-container">
             
             <!-- LEFT NAVIGATION MENU -->
@@ -537,42 +541,18 @@
                 </ul>
             </aside>
 
-            <!-- MAIN CONTENT (Image Viewer) -->
+            <!-- MAIN CONTENT: DYNAMIC IMAGE VIEWER -->
             <main class="sheet">
-                <!-- PAGE 1 IMAGE -->
-                <div id="page-1" class="page active">
-                    <img src="Standard-1/Standard3pg1.jpg" alt="Standard 3 Work Done - Page 1" class="works-img">
-                </div>
-
-                <!-- PAGE 2 IMAGE -->
-                <div id="page-2" class="page">
-                    <img src="Standard-1/Standard3pg2.jpg" alt="Standard 3 Work Done - Page 2" class="works-img">
-                </div>
-
-                <!-- PAGE 3 IMAGE -->
-                <div id="page-3" class="page">
-                    <img src="Standard-1/Standard3pg3.jpg" alt="Standard 3 Work Done - Page 3" class="works-img">
-                </div>
-
-                <!-- PAGE 4 IMAGE -->
-                <div id="page-4" class="page">
-                    <img src="Standard-1/Standard3pg4.jpg" alt="Standard 3 Work Done - Page 4" class="works-img">
-                </div>
-
-                <!-- PAGE 5 IMAGE -->
-                <div id="page-5" class="page">
-                    <img src="Standard-1/Standard3pg5.jpg" alt="Standard 3 Work Done - Page 5" class="works-img">
-                </div>
-
-                <!-- PAGE 6 IMAGE -->
-                <div id="page-6" class="page">
-                    <img src="Standard-1/Standard3pg6.jpg" alt="Standard 3 Work Done - Page 6" class="works-img">
+                
+                <!-- CONTAINER WHERE PAGES GET LOADED -->
+                <div id="pages-container">
+                    <!-- Standard 2 pages will load here by default -->
                 </div>
 
                 <!-- PAGINATION CONTROLS -->
                 <div class="pagination">
                     <button id="prev-page" class="page-btn" disabled>← Previous</button>
-                    <span id="page-num" class="page-num">Page 1 of 6</span>
+                    <span id="page-num" class="page-num">Page 1 of 4</span>
                     <button id="next-page" class="page-btn">Next →</button>
                 </div>
             </main>
@@ -582,28 +562,103 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // --- 1. PAGINATION LOGIC (For Image Viewer) ---
-        let currentPage = 1;
-        const totalPages = 6; // Set to 6 pages!
+        // --- 1. DYNAMIC STANDARDS DATA ---
+        // Your files in the Standard-1 folder:
+        // Standard 2 uses the 4 pages you originally uploaded (named Standard1pg1 - pg4)
+        // Standard 3 uses the 6 pages you just added (named Standard3pg1 - pg6)
+        const standardsData = {
+            2: [
+                "Standard-1/Standard1pg1.jpg",
+                "Standard-1/Standard1pg2.jpg",
+                "Standard-1/Standard1pg3.jpg",
+                "Standard-1/Standard1pg4.jpg"
+            ],
+            3: [
+                "Standard-1/Standard3pg1.jpg",
+                "Standard-1/Standard3pg2.jpg",
+                "Standard-1/Standard3pg3.jpg",
+                "Standard-1/Standard3pg4.jpg",
+                "Standard-1/Standard3pg5.jpg",
+                "Standard-1/Standard3pg6.jpg"
+            ]
+        };
 
-        function updatePagination() {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page-' + currentPage).classList.add('active');
-            document.getElementById('page-num').innerText = `Page ${currentPage} of ${totalPages}`;
-            document.getElementById('prev-page').disabled = currentPage === 1;
-            document.getElementById('next-page').disabled = currentPage === totalPages;
+        let currentStandard = 2;
+        let currentPage = 1;
+
+        function loadStandard(num) {
+            if (!standardsData[num]) {
+                alert("Standard " + num + " content is coming soon!");
+                return;
+            }
+
+            currentStandard = num;
+            currentPage = 1;
+
+            // Update Dropdown UI
+            document.getElementById('current-lesson-label').textContent = "Standard " + num;
+            document.querySelectorAll('.dropdown-content button').forEach(b => b.classList.remove('active-drop'));
+            const activeBtn = document.getElementById('drop-std-' + num);
+            if(activeBtn) activeBtn.classList.add('active-drop');
+
+            // Update Right Sidebar Title
+            document.getElementById('sidebar-title').textContent = "Standard " + num;
+
+            // Render Pages in the Sheet
+            const container = document.getElementById('pages-container');
+            container.innerHTML = '';
+
+            standardsData[num].forEach((imgSrc, idx) => {
+                const pageNum = idx + 1;
+                const pageDiv = document.createElement('div');
+                pageDiv.id = 'page-' + pageNum;
+                pageDiv.className = 'page' + (pageNum === 1 ? ' active' : '');
+                
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.alt = `Standard ${num} Page ${pageNum}`;
+                img.className = 'works-img';
+
+                pageDiv.appendChild(img);
+                container.appendChild(pageDiv);
+            });
+
+            updatePagination();
         }
 
-        // Window scrollTo removed!
+        // --- 2. PAGINATION CONTROLS ---
+        function updatePagination() {
+            const pages = standardsData[currentStandard];
+            const total = pages.length;
+
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const targetPage = document.getElementById('page-' + currentPage);
+            if(targetPage) targetPage.classList.add('active');
+
+            document.getElementById('page-num').innerText = `Page ${currentPage} of ${total}`;
+            document.getElementById('prev-page').disabled = currentPage === 1;
+            document.getElementById('next-page').disabled = currentPage === total;
+        }
+
         document.getElementById('prev-page').addEventListener('click', () => { 
-            if(currentPage > 1) { currentPage--; updatePagination(); }
+            if(currentPage > 1) { 
+                currentPage--; 
+                updatePagination(); 
+            }
         });
         
         document.getElementById('next-page').addEventListener('click', () => { 
-            if(currentPage < totalPages) { currentPage++; updatePagination(); }
+            const total = standardsData[currentStandard].length;
+            if(currentPage < total) { 
+                currentPage++; 
+                updatePagination(); 
+            }
         });
 
-        // --- 2. TIMER & XP LOGIC ---
+        // Initialize with Standard 2 on start
+        loadStandard(2);
+
+        // --- 3. TIMER & XP LOGIC ---
         let timerInterval; let timeLeft = 1500; const totalTime = 1500; let isRunning = false;
         function updateTimerDisplay() { const minutes = Math.floor(timeLeft / 60); const seconds = timeLeft % 60; document.getElementById('timer-text').innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`; document.getElementById('mana-bar').style.width = ((timeLeft / totalTime) * 100) + '%'; }
         function startTimer() { if (isRunning) return; isRunning = true; timerInterval = setInterval(() => { if (timeLeft > 0) { timeLeft--; updateTimerDisplay(); } else { clearInterval(timerInterval); isRunning = false; alert("Focus session complete."); } }, 1000); }
@@ -633,7 +688,7 @@
         resetBtn.addEventListener('click', () => { current = 0; renderXP(true); resetBtn.classList.add('spin'); setTimeout(()=>resetBtn.classList.remove('spin'), 400); });
         renderXP(false);
 
-        // --- 3. SIDEBAR CHEAT SHEET LOGIC ---
+        // --- 4. SIDEBAR CHEAT SHEET LOGIC ---
         const triggerTab = document.getElementById('triggerTab');
         const sidebar = document.getElementById('sidebar');
         const closeBtn = document.getElementById('closeBtn');
@@ -642,13 +697,13 @@
         triggerTab.addEventListener('click', () => {
             sidebar.classList.add('open');
             overlay.classList.add('active');
-            triggerTab.style.transform = 'translateY(-50%) translateX(150%)'; // Hides tab
+            triggerTab.style.transform = 'translateY(-50%) translateX(150%)';
         });
 
         function closeSidebar() {
             sidebar.classList.remove('open');
             overlay.classList.remove('active');
-            triggerTab.style.transform = 'translateY(-50%) translateX(0)'; // Shows tab
+            triggerTab.style.transform = 'translateY(-50%) translateX(0)';
         }
 
         closeBtn.addEventListener('click', closeSidebar);
