@@ -391,7 +391,7 @@
     <div id="overlay" class="sidebar-overlay"></div>
     <div id="sidebar" class="glass-sidebar">
         <div class="sidebar-header">
-            <h2 id="sidebar-title">Standard 2</h2>
+            <h2 id="sidebar-title">Standard 1</h2>
             <button id="closeBtn" class="close-btn">×</button>
         </div>
         <div class="sidebar-content">
@@ -514,10 +514,10 @@
             
             <!-- Lessons Dropdown -->
             <div class="tab-item active dropdown">
-                <span id="current-lesson-label">Standard 2</span>
+                <span id="current-lesson-label">Standard 1</span>
                 <div class="dropdown-content">
-                    <button type="button" onclick="loadStandard(1)">Standard 1</button>
-                    <button type="button" id="drop-std-2" class="active-drop" onclick="loadStandard(2)">Standard 2</button>
+                    <button type="button" id="drop-std-1" class="active-drop" onclick="loadStandard(1)">Standard 1</button>
+                    <button type="button" id="drop-std-2" onclick="loadStandard(2)">Standard 2</button>
                     <button type="button" id="drop-std-3" onclick="loadStandard(3)">Standard 3</button>
                     <button type="button" onclick="loadStandard(4)">Standard 4</button>
                 </div>
@@ -546,7 +546,7 @@
                 
                 <!-- CONTAINER WHERE PAGES GET LOADED -->
                 <div id="pages-container">
-                    <!-- Standard 2 pages will load here by default -->
+                    <!-- Standard 1 pages will load here by default -->
                 </div>
 
                 <!-- PAGINATION CONTROLS -->
@@ -563,15 +563,25 @@
     <!-- JAVASCRIPT LOGIC -->
     <script>
         // --- 1. DYNAMIC STANDARDS DATA ---
-        // Your files in the Standard-1 folder:
-        // Standard 2 uses the 4 pages you originally uploaded (named Standard1pg1 - pg4)
-        // Standard 3 uses the 6 pages you just added (named Standard3pg1 - pg6)
+        // Standard 1: 4 pages (Standard1pg1 - pg4)
+        // Standard 2: 8 pages (Standard2pg1 - pg8)
+        // Standard 3: 6 pages (Standard3pg1 - pg6)
         const standardsData = {
-            2: [
+            1: [
                 "Standard-1/Standard1pg1.jpg",
                 "Standard-1/Standard1pg2.jpg",
                 "Standard-1/Standard1pg3.jpg",
                 "Standard-1/Standard1pg4.jpg"
+            ],
+            2: [
+                "Standard-1/Standard2pg1.jpg",
+                "Standard-1/Standard2pg2.jpg",
+                "Standard-1/Standard2pg3.jpg",
+                "Standard-1/Standard2pg4.jpg",
+                "Standard-1/Standard2pg5.jpg",
+                "Standard-1/Standard2pg6.jpg",
+                "Standard-1/Standard2pg7.jpg",
+                "Standard-1/Standard2pg8.jpg"
             ],
             3: [
                 "Standard-1/Standard3pg1.jpg",
@@ -583,7 +593,7 @@
             ]
         };
 
-        let currentStandard = 2;
+        let currentStandard = 1;
         let currentPage = 1;
 
         function loadStandard(num) {
@@ -655,8 +665,8 @@
             }
         });
 
-        // Initialize with Standard 2 on start
-        loadStandard(2);
+        // Initialize with Standard 1 on page load
+        loadStandard(1);
 
         // --- 3. TIMER & XP LOGIC ---
         let timerInterval; let timeLeft = 1500; const totalTime = 1500; let isRunning = false;
